@@ -1,0 +1,15 @@
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\bin\Debug\net6.0\Service.exe
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\bin\Debug\net6.0\Service.deps.json
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\bin\Debug\net6.0\Service.runtimeconfig.json
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\bin\Debug\net6.0\Service.dll
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\bin\Debug\net6.0\Service.pdb
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.csproj.AssemblyReference.cache
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.AssemblyInfoInputs.cache
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.AssemblyInfo.cs
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.csproj.CoreCompileInputs.cache
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.dll
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\refint\Service.dll
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.pdb
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\Service.genruntimeconfig.cache
+E:\Studia\MOJE\ProjektZespolowy\Link\Service\obj\Debug\net6.0\ref\Service.dll
