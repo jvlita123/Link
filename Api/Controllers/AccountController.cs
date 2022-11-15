@@ -1,7 +1,6 @@
 ﻿using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
-
-using Service;
+using Service.Services;
 
 namespace Api.Controllers
 {
@@ -14,10 +13,26 @@ namespace Api.Controllers
             _accountService = accountService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            List<Account> accounts = new List<Account>();
-            accounts = _accountService.GetAll();
+            List<Account> accounts = _accountService.GetAll();
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Get(int id)
+        {
+            Account account = _accountService.Get(id);
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Account account)
+        {
+            _accountService.Add(account);
 
             return View();
         }

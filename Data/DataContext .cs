@@ -12,13 +12,16 @@ namespace Api.Data
         private DbSet<Account> Accounts { get; set; }
         private DbSet<Achievement> Achievements { get; set; }
         private DbSet<Employee> Employees { get; set; }
+        private DbSet<Match> Matches { get; set; }
+        private DbSet<MatchHistory> MatchHistories { get; set; }
+        private DbSet<Message> Messages { get; set; }
+        private DbSet<Photo> Photos { get; set; }
+        private DbSet<Reaction> Reactions { get; set; }
+        private DbSet<Relation> Relations { get; set; }
+        private DbSet<Status> Statuses { get; set; }
+        private DbSet<Story> Stories { get; set; }
         private DbSet<UserAchievement> UserAchievements { get; set; }
         private DbSet<User> Users { get; set; }
-
-        public void AttachEntity<TEntity>(TEntity entity) where TEntity : class, new()
-        {
-            Set<TEntity>().Attach(entity);
-        }
 
         public void AddEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {
@@ -45,12 +48,6 @@ namespace Api.Data
         public void UpdateEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {
             Entry(entity).State = EntityState.Modified;
-        }
-
-        public void UpdateEntityAndSaveChanges<TEntity>(TEntity entity) where TEntity : class, new()
-        {
-            UpdateEntity(entity);
-            SaveChanges();
         }
 
         public void UpdateEntitiesRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class, new()

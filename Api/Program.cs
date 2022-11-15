@@ -1,7 +1,7 @@
 using Api.Data;
 using Data.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Service;
+using Service.Services;
 
 namespace Api
 {
@@ -14,18 +14,35 @@ namespace Api
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
+
             builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<AccountRepository>();
             builder.Services.AddScoped<AchievementService>();
             builder.Services.AddScoped<AchievementRepository>();
             builder.Services.AddScoped<EmployeeService>();
             builder.Services.AddScoped<EmployeeRepository>();
+            builder.Services.AddScoped<MatchService>();
+            builder.Services.AddScoped<MatchRepository>();
+            builder.Services.AddScoped<MatchHistoryService>();
+            builder.Services.AddScoped<MatchHistoryRepository>();
+            builder.Services.AddScoped<MessageService>();
+            builder.Services.AddScoped<MessageRepository>();
+            builder.Services.AddScoped<PhotoService>();
+            builder.Services.AddScoped<PhotoRepository>();
+            builder.Services.AddScoped<ReactionService>();
+            builder.Services.AddScoped<ReactionRepository>();
+            builder.Services.AddScoped<RelationService>();
+            builder.Services.AddScoped<RelationRepository>();
+            builder.Services.AddScoped<StatusService>();
+            builder.Services.AddScoped<StatusRepository>();
+            builder.Services.AddScoped<StoryService>();
+            builder.Services.AddScoped<StoryRepository>();
+            builder.Services.AddScoped<UserAchievementService>();
             builder.Services.AddScoped<UserAchievementRepository>();
-            builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<UserService>();
-
-            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddScoped<UserRepository>();
 
             var app = builder.Build();
 

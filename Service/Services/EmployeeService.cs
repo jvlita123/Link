@@ -1,7 +1,7 @@
 ﻿using Data.Entities;
 using Data.Repositories;
 
-namespace Service
+namespace Service.Services
 {
     public class EmployeeService
     {
@@ -14,7 +14,7 @@ namespace Service
 
         public List<Employee> GetAll()
         {
-            List<Employee>? employees = _employeeRepository.GetAll().ToList();
+            List<Employee> employees = _employeeRepository.GetAll().ToList();
 
             return employees;
         }

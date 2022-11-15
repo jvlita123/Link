@@ -1,7 +1,7 @@
 ﻿using Data.Entities;
 using Data.Repositories;
 
-namespace Service
+namespace Service.Services
 {
     public class AchievementService
     {
@@ -14,7 +14,7 @@ namespace Service
 
         public List<Achievement> GetAll()
         {
-            List<Achievement>? achievements = _achievementRepository.GetAll().ToList();
+            List<Achievement> achievements = _achievementRepository.GetAll().ToList();
 
             return achievements;
         }

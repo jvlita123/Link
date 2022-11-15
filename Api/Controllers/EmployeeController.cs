@@ -1,6 +1,6 @@
 ﻿using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Service;
+using Service.Services;
 
 namespace Api.Controllers
 {
@@ -15,8 +15,7 @@ namespace Api.Controllers
 
         public IActionResult Index()
         {
-            List<Employee> employees = new List<Employee>();
-            employees = _employeeService.GetAll();
+            List<Employee> employees = _employeeService.GetAll();
 
             return View();
         }
