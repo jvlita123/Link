@@ -12,7 +12,7 @@ namespace Service
             _accountRepository = accountRepository;
         }
 
-        public List<Account> GetAccounts()
+        public List<Account> GetAll()
         {
             List<Account>? accounts = _accountRepository.GetAll().ToList();
 

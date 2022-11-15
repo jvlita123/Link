@@ -17,7 +17,7 @@ namespace Api.Controllers
         public IActionResult Index()
         {
             List<Account> accounts = new List<Account>();
-            accounts = _accountService.GetAccounts();
+            accounts = _accountService.GetAll();
 
             return View();
         }

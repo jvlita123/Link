@@ -10,6 +10,10 @@ namespace Api.Data
         }
 
         private DbSet<Account> Accounts { get; set; }
+        private DbSet<Achievement> Achievements { get; set; }
+        private DbSet<Employee> Employees { get; set; }
+        private DbSet<UserAchievement> UserAchievements { get; set; }
+        private DbSet<User> Users { get; set; }
 
         public void AttachEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {

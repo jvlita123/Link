@@ -16,6 +16,13 @@ namespace Api
 
             builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<AccountRepository>();
+            builder.Services.AddScoped<AchievementService>();
+            builder.Services.AddScoped<AchievementRepository>();
+            builder.Services.AddScoped<EmployeeService>();
+            builder.Services.AddScoped<EmployeeRepository>();
+            builder.Services.AddScoped<UserAchievementRepository>();
+            builder.Services.AddScoped<UserRepository>();
+            builder.Services.AddScoped<UserService>();
 
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
