@@ -9,19 +9,19 @@ namespace Api.Data
         {
         }
 
-        private DbSet<Account> Accounts { get; set; }
-        private DbSet<Achievement> Achievements { get; set; }
-        private DbSet<Employee> Employees { get; set; }
-        private DbSet<Match> Matches { get; set; }
-        private DbSet<MatchHistory> MatchHistories { get; set; }
-        private DbSet<Message> Messages { get; set; }
-        private DbSet<Photo> Photos { get; set; }
-        private DbSet<Reaction> Reactions { get; set; }
-        private DbSet<Relation> Relations { get; set; }
-        private DbSet<Status> Statuses { get; set; }
-        private DbSet<Story> Stories { get; set; }
-        private DbSet<UserAchievement> UserAchievements { get; set; }
-        private DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Match> Matches { get; set; }
+        public DbSet<MatchHistory> MatchHistories { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+        public DbSet<Reaction> Reactions { get; set; }
+        public DbSet<Relation> Relations { get; set; }
+        public DbSet<Status> Statuses { get; set; }
+        public DbSet<Story> Stories { get; set; }
+        public DbSet<UserAchievement> UserAchievements { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public void AddEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {

@@ -1,4 +1,4 @@
-﻿using Data.Entities;
+﻿using Data.Dto_s.User;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 
@@ -15,9 +15,18 @@ namespace Api.Controllers
 
         public IActionResult Index()
         {
-            List<User> accounts = _userService.GetAll();
+            //pobieranie userName z ciasteczka
+            MyUserDto? myUser = _userService.MyUser("eryczeslaw");
 
-            return View();
+            return View(myUser);
+        }
+
+        [Route("User/{name}")]
+        public IActionResult Get(string name)
+        {
+            GetUserDto? user = _userService.Get(name);
+
+            return View(user);
         }
     }
 }
