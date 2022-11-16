@@ -19,7 +19,7 @@ namespace Data.Entities
         public bool Gender { get; set; }
 
         [Required]
-        [Column("usr_phoneNumber")]
+        [Column("usr_phoneNumer")]
         public string PhoneNumber { get; set; }
 
         [Required]
@@ -31,10 +31,12 @@ namespace Data.Entities
         public DateTime LastLogin { get; set; }
 
         [Required]
-        [Column("user_accID")]
+        [Column("usr_accID")]
         public int AccountId { get; set; }
 
         [ForeignKey("AccountId")]
         public virtual Account Account { get; set; }
+
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

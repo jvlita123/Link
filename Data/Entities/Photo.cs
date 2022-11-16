@@ -14,9 +14,6 @@ namespace Data.Entities
         [Column("pho_usrID")]
         public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-
         [Required]
         [Column("pho_path")]
         public string Path { get; set; }
@@ -29,7 +26,7 @@ namespace Data.Entities
         public DateTime Date { get; set; }
 
         [Required]
-        [Column("pho_idProfilePicture")]
+        [Column("pho_isProfilePicture")]
         public bool IsProfilePicture { get; set; }
     }
 }
