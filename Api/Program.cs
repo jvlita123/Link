@@ -1,5 +1,6 @@
 using Api.Data;
 using Data.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Service.Services;
 
@@ -16,6 +17,15 @@ namespace Api
 
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
+
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                options.SlidingExpiration = true;
+                options.AccessDeniedPath = "/Forbidden/";
+            });
 
             builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<AccountRepository>();
@@ -44,6 +54,10 @@ namespace Api
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<UserRepository>();
 
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -59,7 +73,10 @@ namespace Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

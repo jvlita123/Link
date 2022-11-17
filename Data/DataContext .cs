@@ -9,6 +9,10 @@ namespace Api.Data
         {
         }
 
+        public DataContext()
+        {
+        }
+
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<Employee> Employees { get; set; }

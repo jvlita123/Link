@@ -19,7 +19,7 @@ namespace Data.Entities
         public bool Gender { get; set; }
 
         [Required]
-        [Column("usr_phoneNumer")]
+        [Column("usr_phoneNumber")]
         public string PhoneNumber { get; set; }
 
         [Required]
