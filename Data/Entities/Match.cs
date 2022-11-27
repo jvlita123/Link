@@ -14,6 +14,7 @@ namespace Data.Entities
         [Column("mat_usrID")]
         public int FirstUserId { get; set; }
 
+        [NotMapped]
         [ForeignKey("FirstUserId")]
         public virtual User FirstUser { get; set; }
 
@@ -37,5 +38,9 @@ namespace Data.Entities
 
         [ForeignKey("StatusId")]
         public virtual Status Status { get; set; }
+
+        [Required]
+        [Column("mat_date")]
+        public DateTime Date { get; set; }
     }
 }
