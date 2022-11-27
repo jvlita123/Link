@@ -1,5 +1,4 @@
-﻿using Api.Data;
-using Data.Entities;
+﻿using Data.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -65,7 +64,6 @@ namespace Api.Controllers
                 ModelState.Clear();
             }
             return View();
-
         }
 
         //Login
@@ -73,38 +71,36 @@ namespace Api.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Login(Account acc)
         {
-            using (DataContext db = new DataContext())
+            var user = _accountService.GetAll()
+            .FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
+            if (user != null)
             {
-                var user = _accountService.GetAll()
-                .FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
-                if (user != null)
-                {
-                    // Session["Id"] = usr.Id.ToString();
-                    // Session["Email"] = usr.Email.ToString();
-                    var claims = new List<Claim>
+                // Session["Id"] = usr.Id.ToString();
+                // Session["Email"] = usr.Email.ToString();
+                var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.Email),
                         new Claim(ClaimTypes.Role, "User"),
                     };
 
+                var claimsIdentity = new ClaimsIdentity(
+                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    var claimsIdentity = new ClaimsIdentity(
-                        claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity));
 
-                    HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity));
-
-                    return RedirectToAction("LoggedIn");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Email or Password is wrong.");
-                }
+                return RedirectToAction("LoggedIn");
             }
+            else
+            {
+                ModelState.AddModelError("", "Email or Password is wrong.");
+            }
+
             return View();
         }
 
@@ -125,7 +121,7 @@ namespace Api.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("index","Home");
+            return RedirectToAction("index", "Home");
         }
     }
 }

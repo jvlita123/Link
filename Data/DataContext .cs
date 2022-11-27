@@ -9,19 +9,18 @@ namespace Api.Data
         {
         }
 
-        public DataContext()
-        {
-        }
-
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Block> Blocks { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<MatchHistory> MatchHistories { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Preference> Preferences { get; set; }
         public DbSet<Reaction> Reactions { get; set; }
         public DbSet<Relation> Relations { get; set; }
+        public DbSet<RelationUser> RelationUsers { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }

@@ -19,17 +19,10 @@ namespace Data.Entities
 
         [Required]
         [Column("mah_usrID")]
-        public int FirstUserId { get; set; }
+        public int HistoryUserId { get; set; }
 
-        [ForeignKey("FirstUserId")]
-        public virtual User FirstUser { get; set; }
-
-        [Required]
-        [Column("mah_usrID2")]
-        public int SecondUserId { get; set; }
-
-        [ForeignKey("SecondUserId")]
-        public virtual User SecondUser { get; set; }
+        [ForeignKey("HistoryUserId")]
+        public virtual User HistoryUser { get; set; }
 
         [Required]
         [Column("mah_rate")]

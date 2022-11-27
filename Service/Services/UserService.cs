@@ -23,6 +23,7 @@ namespace Service.Services
 
         public MyUserDto? MyUser(string name)
         {
+            var users = _userRepository.GetAll().ToList();
             User? user = _userRepository.GetAll()
                 .Include(x => x.Photos)
                 .Where(x => x.Name == name)

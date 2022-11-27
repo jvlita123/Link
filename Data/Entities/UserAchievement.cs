@@ -25,7 +25,7 @@ namespace Data.Entities
         public virtual User User { get; set; }
 
         [Required]
-        [Column("emp_fullName")]
-        public string FullName { get; set; }
+        [Column("gac_date")]
+        public DateTime AddDate { get; set; }
     }
 }
