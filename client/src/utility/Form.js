@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { INPUT_ELEMENTS } from '../constants/inputs'
+import useForm from '../hooks/useForm'
 
 function Input(props) {
     const { input } = props
@@ -7,15 +8,14 @@ function Input(props) {
     const inputElement = useRef()
 
     useEffect(() => {
-        if (focus) {
-            inputElement.current.focus()
-        }
+        if (focus) inputElement.current.focus()
     }, [focus])
 
     return (
         <div onClick={() => setFocus(true)} className={'input-wrapper full-width ' + input.className + (focus ? ' focus' : '')}>
-            <input 
-                value={input.state}
+            <input
+                name={input.name}
+                defaultValue={input.state}
                 onChange={(e) => input.setState(e.target.value)}
                 ref={inputElement}
                 onFocus={() => setFocus(true)}
@@ -47,13 +47,21 @@ function SwitchRender(props) {
 
 function Form(props) {
     const { inputs, buttons } = props
+
+    const { handleSubmit, correct } = useForm(inputs)
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        handleSubmit()
+    }
+
     return (
-        <form className='form-body'>
+        <form className='form-body' onSubmit={(e) => onSubmit(e)}>
             {inputs.map((input, key) =>
                 <SwitchRender input={input} key={key} />
             )}
             {buttons.map((button, key) =>
-                <div className='button-wrapper' key={key}>
+                <div className={correct ? 'button-wrapper' : 'button-wrapper disabled'} key={key}>
                     {button.component}
                 </div>
             )}

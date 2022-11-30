@@ -19,6 +19,7 @@ function Register() {
 
   const inputFields = [
     {
+      name: 'email',
       placeholder: 'email@example.com',
       type: INPUT_TYPES.EMAIL,
       required: true,
@@ -28,6 +29,7 @@ function Register() {
       className: 'plain'
     },
     {
+      name: 'password',
       placeholder: 'Enter password',
       type: INPUT_TYPES.PASSWORD,
       required: true,
@@ -37,6 +39,7 @@ function Register() {
       className: 'plain'
     },
     {
+      name: 'confirm-password',
       placeholder: 'Confirm password',
       type: INPUT_TYPES.PASSWORD,
       required: true,
@@ -50,7 +53,7 @@ function Register() {
   const buttons = [
     {
       type: 'submit',
-      component: <Button text='Continue' className='primary capsule full-width mt-3' action={() => { }} />
+      component: <Button type='submit' text='Continue' className='primary capsule full-width mt-3' action={() => { }} />
     }
   ]
 

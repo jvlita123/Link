@@ -11,6 +11,7 @@ function Login() {
 
     const inputFields = [
         {
+            name: 'email',
             placeholder: 'email@example.com',
             type: INPUT_TYPES.EMAIL,
             required: true,
@@ -20,6 +21,7 @@ function Login() {
             className: 'plain'
         },
         {
+            name: 'password',
             placeholder: 'Your password',
             type: INPUT_TYPES.PASSWORD,
             required: true,
@@ -33,7 +35,7 @@ function Login() {
     const buttons = [
         {
             type: 'submit',
-            component: <Button text='Continue' className='primary capsule full-width mt-3' action={() => {}} />
+            component: <Button type='submit' text='Continue' className='primary capsule full-width mt-3' action={() => {}} />
         },
         {
             type: 'button',

@@ -111,6 +111,20 @@ body {
         }
     }
 
+    .button-wrapper {
+        width: 100%;
+        text-align: center;
+
+        &.disabled {
+            button.primary {
+                background-color: #ddd;
+                color: $light-dimmed-font-color;
+                cursor: default;
+                pointer-events: none;
+            }
+        }
+    }
+
     /**
      *
      *   ----------------- INPUTS -----------------
@@ -452,11 +466,6 @@ body {
                     flex-direction: column;
                     align-items: center;
                     gap: 10px;
-
-                    .button-wrapper {
-                        width: 100%;
-                        text-align: center;
-                    }
                 }
             }
         }

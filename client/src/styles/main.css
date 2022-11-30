@@ -98,6 +98,16 @@ body button.full-width {
 body button.capsule {
   border-radius: 26px;
 }
+body .button-wrapper {
+  width: 100%;
+  text-align: center;
+}
+body .button-wrapper.disabled button.primary {
+  background-color: #ddd;
+  color: rgba(17, 17, 17, 0.7);
+  cursor: default;
+  pointer-events: none;
+}
 body .input-wrapper {
   background-color: rgba(255, 255, 255, 0.8);
   display: flex;
@@ -365,8 +375,4 @@ body .content.form .form-wrapper .form-body {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-}
-body .content.form .form-wrapper .form-body .button-wrapper {
-  width: 100%;
-  text-align: center;
 }/*# sourceMappingURL=main.css.map */
