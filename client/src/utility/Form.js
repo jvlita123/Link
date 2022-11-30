@@ -7,14 +7,21 @@ function Input(props) {
     const inputElement = useRef()
 
     useEffect(() => {
-        if (focus === true) {
+        if (focus) {
             inputElement.current.focus()
         }
     }, [focus])
 
     return (
         <div onClick={() => setFocus(true)} className={'input-wrapper full-width ' + input.className + (focus ? ' focus' : '')}>
-            <input ref={inputElement} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} type={input.type} placeholder={input.placeholder} />
+            <input 
+                value={input.state}
+                onChange={(e) => input.setState(e.target.value)}
+                ref={inputElement}
+                onFocus={() => setFocus(true)}
+                onBlur={() => setFocus(false)}
+                type={input.type}
+                placeholder={input.placeholder} />
         </div>
     )
 }
@@ -45,13 +52,11 @@ function Form(props) {
             {inputs.map((input, key) =>
                 <SwitchRender input={input} key={key} />
             )}
-            {buttons.map((button, key) => {
-                return (
-                    <div className='button-wrapper' key={key}>
-                        {button.component}
-                    </div>
-                )
-            })}
+            {buttons.map((button, key) =>
+                <div className='button-wrapper' key={key}>
+                    {button.component}
+                </div>
+            )}
         </form>
     )
 }

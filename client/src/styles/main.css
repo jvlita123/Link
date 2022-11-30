@@ -136,6 +136,7 @@ body .input-wrapper input {
   outline: none;
   width: 250px;
   background-color: transparent;
+  border-radius: 30px;
 }
 body .input-wrapper input::-moz-placeholder {
   color: rgba(17, 17, 17, 0.4);

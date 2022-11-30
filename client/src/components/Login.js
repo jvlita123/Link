@@ -20,7 +20,7 @@ function Login() {
             className: 'plain'
         },
         {
-            placeholder: 'Enter password',
+            placeholder: 'Your password',
             type: INPUT_TYPES.PASSWORD,
             required: true,
             inputElement: INPUT_ELEMENTS.INPUT,

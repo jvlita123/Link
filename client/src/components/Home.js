@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../utility/Button'
 
@@ -39,16 +39,23 @@ function Stats() {
 function BannerInput() {
   const navigate = useNavigate()
   const emailInput = useRef()
+  const [focus, setFocus] = useState(false)
 
   const handleSubmit = () => {
     const params = new URLSearchParams({ email: emailInput.current.value })
     navigate('/signup?' + params)
   }
 
+  useEffect(() => {
+    if (focus) {
+      emailInput.current.focus()
+    }
+  }, [focus])
+
   return (
-    <div className='input-wrapper'>
-      <i className="bi bi-envelope"></i>
-      <input ref={emailInput} type='text' placeholder='Enter your email' />
+    <div onClick={() => setFocus(true)} className={focus ? 'input-wrapper focus' : 'input-wrapper'}>
+      <i className="bi bi-envelope-at"></i>
+      <input onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} ref={emailInput} type='text' placeholder='Enter your email' />
       <Button text='Get started' action={handleSubmit} className='primary capsule' />
     </div>
   )
