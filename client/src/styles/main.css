@@ -22,7 +22,7 @@ body {
    */
   /**
    *
-   *   ----------------- BUTTONS -----------------
+   *   ----------------- BUTTONS & LINKS -----------------
    *
    */
   /**
@@ -81,6 +81,20 @@ body button.primary:active {
   transition: 0.1s ease-in-out;
   transform: scale(0.96);
 }
+body button.link {
+  color: #0d6efd;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+body button.link:hover {
+  text-decoration: underline;
+}
+body button.full-width {
+  width: 100%;
+}
 body button.capsule {
   border-radius: 26px;
 }
@@ -97,6 +111,21 @@ body .input-wrapper {
   width: -moz-fit-content;
   width: fit-content;
   border: 2px solid rgba(17, 17, 17, 0.1);
+  transition: 0.2s ease-in-out;
+  cursor: text;
+}
+body .input-wrapper.focus {
+  border-color: #0d6efd;
+}
+body .input-wrapper.full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+body .input-wrapper.full-width input {
+  width: 100%;
+}
+body .input-wrapper.plain {
+  box-shadow: none;
 }
 body .input-wrapper input {
   border: none;
@@ -121,6 +150,24 @@ body .flex-wrapper {
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+body .flex-wrapper.column {
+  flex-direction: column;
+}
+body .mt-5 {
+  margin-top: 50px;
+}
+body .mt-4 {
+  margin-top: 40px;
+}
+body .mt-3 {
+  margin-top: 30px;
+}
+body .mt-2 {
+  margin-top: 20px;
+}
+body .mt-1 {
+  margin-top: 10px;
 }
 body .navbar-space-fillout {
   position: relative;
@@ -249,14 +296,16 @@ body .content.home .banner-image .capsule-icons-wrapper .capsule-icon:nth-of-typ
 body .content.home .banner-image .capsule-icons-wrapper .capsule-icon:nth-of-type(2) {
   right: 50%;
   top: 30%;
+  transform: rotate(20deg);
 }
 body .content.home .banner-image .capsule-icons-wrapper .capsule-icon:nth-of-type(3) {
-  right: 20px;
+  right: 40px;
   top: 60%;
 }
 body .content.home .banner-image .capsule-icons-wrapper .capsule-icon:nth-of-type(4) {
   left: 70px;
   top: 50%;
+  transform: rotate(-10deg);
 }
 body .content.home .banner-image .capsule-icons-wrapper .capsule-icon.small {
   font-size: 2em;
@@ -278,4 +327,41 @@ body .content.home .stats-wrapper .stats-card h2 {
 }
 body .content.home .stats-wrapper .stats-card p {
   margin: 0;
+}
+body .content.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+}
+body .content.form .form-wrapper {
+  background-color: #fff;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  border-radius: 22px;
+  padding: 34px 42px;
+}
+body .content.form .form-wrapper .form-body {
+  margin-top: 20px;
+}
+body .content.form .form-wrapper h2 {
+  margin: 0;
+}
+body .content.form .form-wrapper h4 {
+  color: rgba(17, 17, 17, 0.7);
+  margin: 10px 0;
+  font-weight: 400;
+}
+body .content.form .form-wrapper .form-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+body .content.form .form-wrapper .form-body .button-wrapper {
+  width: 100%;
+  text-align: center;
 }/*# sourceMappingURL=main.css.map */

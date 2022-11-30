@@ -1,8 +1,10 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Button from './Button'
 
 function Navbar() {
+    const navigate = useNavigate()
+
     return (
         <nav className='navbar'>
             <div className='flex-wrapper navbar-space-fillout'>
@@ -17,8 +19,8 @@ function Navbar() {
                 <NavLink className='nav-link' to='/contact'><li>Contact</li></NavLink>
             </ul>
             <div className='flex-wrapper'>
-                <Button text='Log In' action={() => {}} />
-                <Button text='Register' action={() => {}} className='primary capsule' />
+                <Button text='Log In' action={() => navigate('/login')} />
+                <Button text='Register' action={() => navigate('/signup')} className='primary capsule' />
             </div>
         </nav>
     )

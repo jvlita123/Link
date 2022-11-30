@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../utility/Button'
 
 function BannerText(props) {
@@ -36,11 +37,19 @@ function Stats() {
 }
 
 function BannerInput() {
+  const navigate = useNavigate()
+  const emailInput = useRef()
+
+  const handleSubmit = () => {
+    const params = new URLSearchParams({ email: emailInput.current.value })
+    navigate('/signup?' + params)
+  }
+
   return (
     <div className='input-wrapper'>
       <i className="bi bi-envelope"></i>
-      <input type='text' placeholder='Enter your email' />
-      <Button text='Get started' action={() => { console.log('Hello') }} className='primary capsule' />
+      <input ref={emailInput} type='text' placeholder='Enter your email' />
+      <Button text='Get started' action={handleSubmit} className='primary capsule' />
     </div>
   )
 }
