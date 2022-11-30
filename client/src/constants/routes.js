@@ -1,4 +1,4 @@
-import Home from '../components/Home'
+import App from '../App'
 import Login from '../components/Login'
 import PageNotFound from '../components/PageNotFound'
 import Register from '../components/Register'
@@ -6,7 +6,7 @@ import Register from '../components/Register'
 export const routes = [
     {
         path: '/',
-        component: <Home />
+        component: <App />
     },
     {
         path: '/login',
