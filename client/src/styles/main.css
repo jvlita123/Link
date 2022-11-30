@@ -126,6 +126,10 @@ body .input-wrapper.full-width input {
 }
 body .input-wrapper.plain {
   box-shadow: none;
+  padding: 0;
+}
+body .input-wrapper.plain input {
+  padding: 8px 10px 8px 18px;
 }
 body .input-wrapper input {
   border: none;

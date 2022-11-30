@@ -146,6 +146,11 @@ body {
 
         &.plain {
             box-shadow: none;
+            padding: 0;
+
+            input {
+                padding: 8px 10px 8px 18px;
+            }
         }
 
         input {
