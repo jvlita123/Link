@@ -12,10 +12,12 @@ namespace Api.Controllers
     public class AccountController : Controller
     {
         private AccountService _accountService;
+        private UserService _userService;
 
-        public AccountController(AccountService accountService)
+        public AccountController(AccountService accountService, UserService userService)
         {
             _accountService = accountService;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -75,15 +77,16 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Login(Account acc)
         {
-            var user = _accountService.GetAll()
-            .FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
+            Account? user = _accountService.GetAll().FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
             if (user != null)
             {
-                // Session["Id"] = usr.Id.ToString();
-                // Session["Email"] = usr.Email.ToString();
+                int userId = _userService.GetUserIdByAccountId(user.Id);
+                string userName = _userService.GetUserNameByAccountId(user.Id);
                 var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user.Email),
+                        new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                        new Claim(ClaimTypes.Name, userName),
+                        new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Role, "User"),
                     };
 

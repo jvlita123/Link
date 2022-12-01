@@ -11,5 +11,19 @@ namespace Data.Repositories
         {
             _dataContext = context;
         }
+
+        public string GetUserNameByAccountId(int accountId)
+        {
+            var result = _dataContext.Users.Where(u => u.AccountId == accountId).Select(u => u.Name).FirstOrDefault();
+
+            return result;
+        }
+
+        public int GetUserIdByAccountId(int accountId)
+        {
+            var result = _dataContext.Users.Where(u => u.AccountId == accountId).Select(u => u.Id).FirstOrDefault();
+
+            return result;
+        }
     }
 }
