@@ -18,6 +18,7 @@ namespace Data.Entities
         [Column("mes_usrID")]
         public int FirstUserId { get; set; }
 
+        [NotMapped]
         [ForeignKey("FirstUserId")]
         public virtual User FirstUser { get; set; }
 

@@ -14,12 +14,15 @@ namespace Data.Entities
         [Column("pho_usrID")]
         public int UserId { get; set; }
 
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
+
         [Required]
         [Column("pho_path")]
         public string Path { get; set; }
 
         [Column("pho_description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         [Column("pho_date")]

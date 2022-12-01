@@ -29,7 +29,6 @@ namespace Api
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 
-
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
@@ -52,10 +51,14 @@ namespace Api
             builder.Services.AddScoped<MessageRepository>();
             builder.Services.AddScoped<PhotoService>();
             builder.Services.AddScoped<PhotoRepository>();
+            builder.Services.AddScoped<PreferenceService>();
+            builder.Services.AddScoped<PreferenceRepository>();
             builder.Services.AddScoped<ReactionService>();
             builder.Services.AddScoped<ReactionRepository>();
             builder.Services.AddScoped<RelationService>();
             builder.Services.AddScoped<RelationRepository>();
+            builder.Services.AddScoped<RelationUserService>();
+            builder.Services.AddScoped<RelationUserRepository>();
             builder.Services.AddScoped<StatusService>();
             builder.Services.AddScoped<StatusRepository>();
             builder.Services.AddScoped<StoryService>();
@@ -67,7 +70,6 @@ namespace Api
 
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();
-
 
             var app = builder.Build();
 
@@ -86,7 +88,7 @@ namespace Api
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.UseSession();
 
             app.MapControllerRoute(

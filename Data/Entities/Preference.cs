@@ -3,19 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
-    [Table("rec_Reaction")]
-    public class Reaction
+    [Table("pre_Preferences")]
+    public class Preference
     {
         [Key]
-        [Column("rec_ID")]
+        [Column("pre_ID")]
         public int Id { get; set; }
 
         [Required]
-        [Column("rec_name")]
-        public string Name { get; set; }
+        [Column("pre_type")]
+        public string Type { get; set; }
 
         [Required]
-        [Column("rec_emoji")]
-        public string Emoji { get; set; }
+        [Column("pre_value")]
+        public string Value { get; set; }
     }
 }

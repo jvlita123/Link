@@ -23,6 +23,7 @@ namespace Service.Services
 
         public MyUserDto? MyUser(string name)
         {
+            var users = _userRepository.GetAll().ToList();
             User? user = _userRepository.GetAll()
                 .Include(x => x.Photos)
                 .Where(x => x.Name == name)
@@ -74,6 +75,20 @@ namespace Service.Services
             getUserDto.ProfilePhoto = CheckProfile(getUserDto.ProfilePhoto);
 
             return getUserDto;
+        }
+
+        public string GetUserNameByAccountId(int accountId)
+        {
+            string? name = _userRepository.GetUserNameByAccountId(accountId);
+
+            return name;
+        }
+
+        public int GetUserIdByAccountId(int accountId)
+        {
+            int id = _userRepository.GetUserIdByAccountId(accountId);
+
+            return id;
         }
 
         private string CheckProfile(string? path)

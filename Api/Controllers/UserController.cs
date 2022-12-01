@@ -1,9 +1,11 @@
 ﻿using Data.Dto_s.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 
 namespace Api.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private UserService _userService;

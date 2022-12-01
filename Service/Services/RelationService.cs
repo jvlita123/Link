@@ -12,6 +12,13 @@ namespace Service.Services
             _relationRepository = relationRepository;
         }
 
+        public Relation GetByName(string name)
+        {
+            Relation relation = _relationRepository.GetByName(name);
+
+            return relation;
+        }
+
         public List<Relation> GetAll()
         {
             List<Relation> relations = _relationRepository.GetAll().ToList();

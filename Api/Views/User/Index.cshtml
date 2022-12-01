@@ -9,7 +9,7 @@
     <table width="300px">
         <tr>
             <th>@Html.DisplayNameFor(model => model.ProfilePhoto)</th>
-            <td><img src="~/Photos/@Model.ProfilePhoto" height="70" width="70"/></td>
+            <td><img src="~/Photos/@Model.ProfilePhoto" height="70" width="70" /></td>
         </tr>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Name)</th>
@@ -30,8 +30,13 @@
     </table>
     <table>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Photos)</th>
-            <td><img src="~/Photos/@Model.Photos.First()" height="140" width="140"/></td>
+            @{
+                if (@Model.Photos.Count > 0)
+                {
+                    <th>@Html.DisplayNameFor(model => model.Photos)</th>
+                    <td><img src="~/Photos/@Model.Photos.First()" height="140" width="140" /></td>
+                }
+            }
         </tr>
     </table>
 </div>

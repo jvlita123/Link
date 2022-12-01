@@ -17,6 +17,7 @@ namespace Data.Entities
         [ForeignKey("PhotoId")]
         public virtual Photo Photo { get; set; }
 
+        [Required]
         [Column("sto_duration")]
         public int Duration { get; set; }
     }
