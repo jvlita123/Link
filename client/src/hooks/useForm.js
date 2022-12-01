@@ -1,30 +1,132 @@
-import { useCallback, useEffect, useState } from "react"
+import { useState, useEffect } from "react"
+import { INPUT_TYPES } from "../constants/inputs"
 
-export default function useForm(inputs = []) {
+export default function useForm(inputs = [{}], submitCallback) {
 
-    const [correct, setCorrect] = useState(false)
+    /**
+     * ----------------- useForm -----------------
+     * 
+     * Custom hook to validate forms:
+     *  - takes input fields array as an only argument
+     *  - validates multiple fields in real time (as the user is typing)
+     *  - inputs array should contain listed key-value pairs to fully benefit from this hook
+     *
+     */
+
+    /**
+     * 
+     * ----------------- inputs array -----------------
+     *  - array of objects with key-value pairs
+     * 
+     * [{
+     *  name: 'field name',
+     *  type: INPUT_TYPES.FIELD_TYPE
+     *  required: true / false,
+     *  state: state,
+     *  setState: () => {},
+     *  className: ''
+     * }]
+     * 
+     */
+
     const [error, setError] = useState([{}])
 
-    const checkRequired = useCallback(() => {
+    // Compare 'password' field with 'confirm password' field (if exists)
+    const checkPassword = () => {
+        let passwordField = inputs.find(input => input.name === 'password')
+        let confirmPasswordField = inputs.find(input => input.name === 'confirm-password')
+
+        if (confirmPasswordField) {
+            let password = passwordField.state
+            let confirmPassword = confirmPasswordField.state
+
+            if (password.length < 8) {
+                setError(prev => [...prev, {
+                    field: passwordField['name'],
+                    message: 'Password should be at least 8 characters long'
+                }])
+
+            } else {
+                if (confirmPassword !== password) {
+                    setError(prev => [...prev,
+                        {
+                            field: passwordField['name'],
+                            message: 'Those passwords didn\'t match'
+                        },
+                        {
+                            field: confirmPasswordField['name'],
+                            message: 'Those passwords didn\'t match'
+                        }
+                    ])
+                }
+            }
+        }
+    }
+
+    // Validate email field if exists in inputs array
+    const checkEmail = () => {
+        // Find error field and validate its value
+        let emailInputField = inputs.find(input => input.type === INPUT_TYPES.EMAIL)
+        if (emailInputField) {
+            if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInputField['state'])) {
+                // Email not valid -> setError
+                setError(prev => [...prev, {
+                    field: emailInputField['name'],
+                    message: `Invalid email address`
+                }])
+            }
+        }
+    }
+
+    // Check if every field marked as 'required' is filled
+    const checkRequired = () => {
         setError([])
         for (let i = 0; i < inputs.length; i++) {
             if (inputs[i].required && inputs[i].state === '') {
-                setError(prev => [...prev, { field: inputs[i].name, message: `Field ${inputs[i].name} is required` }])
+                if (inputs[i].name === 'confirm-password') {
+                    setError(prev => [...prev, {
+                        field: inputs[i].name,
+                        message: ''
+                    }])
+
+                } else {
+                    setError(prev => [...prev, {
+                        field: inputs[i].name,
+                        message: `Field ${inputs[i].name} is required`
+                    }])
+                }
             }
         }
-    }, [inputs])
-
-    useEffect(() => {
-        checkRequired()
-    }, [inputs, checkRequired])
-
-    useEffect(() => {
-        setCorrect(error.length === 0)
-    }, [error])
-
-    const handleSubmit = () => {
-        checkRequired()
     }
 
-    return { handleSubmit, correct }
+    const validateForm = () => {
+        checkRequired()
+        checkEmail()
+        checkPassword()
+        setSubmit(true)
+    }
+
+    const [submit, setSubmit] = useState(false)
+    const handleSubmit = () => {
+        if(!submit) { validateForm() }
+    }
+
+    useEffect(() => {
+        if(submit) {
+            if(error.length) {
+                // Some fields have not been filled correctly
+                // console.log('Hold on, look at those error messages')
+            } else {
+                // All good - form filled correctly
+                // console.log('Go ahead')
+                submitCallback()
+            }
+        }
+
+        return () => {
+            setSubmit(false)
+        }
+    }, [submit, error, submitCallback])
+
+    return { handleSubmit, error }
 }

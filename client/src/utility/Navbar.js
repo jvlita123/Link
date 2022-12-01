@@ -14,9 +14,9 @@ function Navbar() {
             </div>
             <ul className='navbar-link-list'>
                 <NavLink className='nav-link' to='/'><li>Home</li></NavLink>
-                <NavLink className='nav-link' to='/about'><li>About</li></NavLink>
-                <NavLink className='nav-link' to='/privacy'><li>Privacy</li></NavLink>
-                <NavLink className='nav-link' to='/contact'><li>Contact</li></NavLink>
+                <NavLink className='nav-link' to='/about'><li>Loose writing</li></NavLink>
+                <NavLink className='nav-link' to='/privacy'><li>Friendship</li></NavLink>
+                <NavLink className='nav-link' to='/contact'><li>Love</li></NavLink>
             </ul>
             <div className='flex-wrapper'>
                 <Button text='Log In' action={() => navigate('/login')} />

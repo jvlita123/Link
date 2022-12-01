@@ -59,6 +59,9 @@ body.dark {
 body .text-accent {
   color: #EF9A53;
 }
+body .text-danger {
+  color: #be0000;
+}
 body .text-dimmed {
   color: rgba(17, 17, 17, 0.7);
 }
@@ -108,6 +111,11 @@ body .button-wrapper.disabled button.primary {
   cursor: default;
   pointer-events: none;
 }
+body .form-error-message {
+  padding: 0;
+  margin: 0;
+  font-size: 0.8em;
+}
 body .input-wrapper {
   background-color: rgba(255, 255, 255, 0.8);
   display: flex;
@@ -126,6 +134,9 @@ body .input-wrapper {
 }
 body .input-wrapper.focus {
   border-color: #0d6efd;
+}
+body .input-wrapper.error {
+  border-color: #be0000;
 }
 body .input-wrapper.full-width {
   width: 100%;
@@ -159,6 +170,9 @@ body .input-wrapper input::placeholder {
 }
 body .input-wrapper i {
   color: rgba(17, 17, 17, 0.4);
+}
+body .display-none {
+  display: none;
 }
 body .flex-wrapper {
   display: flex;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { INPUT_ELEMENTS, INPUT_TYPES } from '../constants/inputs'
 import Form from '../utility/Form'
@@ -18,7 +18,9 @@ function Login() {
             inputElement: INPUT_ELEMENTS.INPUT,
             state: email,
             setState: setEmail,
-            className: 'plain'
+            className: 'plain',
+            ref: useRef(),
+            errorRef: useRef()
         },
         {
             name: 'password',
@@ -28,14 +30,17 @@ function Login() {
             inputElement: INPUT_ELEMENTS.INPUT,
             state: password,
             setState: setPassword,
-            className: 'plain'
+            className: 'plain',
+            ref: useRef(),
+            errorRef: useRef()
         }
     ]
 
     const buttons = [
         {
             type: 'submit',
-            component: <Button type='submit' text='Continue' className='primary capsule full-width mt-3' action={() => {}} />
+
+            component: <Button type='submit' text='Continue' className='primary capsule full-width mt-3' />
         },
         {
             type: 'button',

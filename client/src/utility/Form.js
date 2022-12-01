@@ -3,36 +3,49 @@ import { INPUT_ELEMENTS } from '../constants/inputs'
 import useForm from '../hooks/useForm'
 
 function Input(props) {
-    const { input } = props
+    const { input, error } = props
     const [focus, setFocus] = useState(false)
     const inputElement = useRef()
+    const [inputError, setInputError] = useState({ field: '', message: '' })
 
     useEffect(() => {
         if (focus) inputElement.current.focus()
     }, [focus])
 
+    useEffect(() => {
+        let errorElement = error.find(errorElement => errorElement.field === input.name)
+        if (errorElement) {
+            setInputError({ field: errorElement.field, message: errorElement.message })
+        } else {
+            setInputError({ field: '', message: '' })
+        }
+    }, [error, input.name])
+
     return (
-        <div onClick={() => setFocus(true)} className={'input-wrapper full-width ' + input.className + (focus ? ' focus' : '')}>
-            <input
-                name={input.name}
-                defaultValue={input.state}
-                onChange={(e) => input.setState(e.target.value)}
-                ref={inputElement}
-                onFocus={() => setFocus(true)}
-                onBlur={() => setFocus(false)}
-                type={input.type}
-                placeholder={input.placeholder} />
-        </div>
+        <>
+            <div ref={input.ref} onClick={() => setFocus(true)} className={'input-wrapper full-width ' + input.className + (focus ? ' focus ' : '') + (inputError.field === input.name ? ' error ' : '')}>
+                <input
+                    name={input.name}
+                    defaultValue={input.state}
+                    onChange={(e) => input.setState(e.target.value)}
+                    ref={inputElement}
+                    onFocus={() => setFocus(true)}
+                    onBlur={() => setFocus(false)}
+                    type={input.type}
+                    placeholder={input.placeholder} />
+            </div>
+            <p className={'form-error-message text-danger' + (true ? '' : 'display-none')}>{inputError.message}</p>
+        </>
     )
 }
 
 function SwitchRender(props) {
-    const { input } = props
+    const { input, error } = props
 
     switch (input.inputElement) {
         case INPUT_ELEMENTS.INPUT:
             return (
-                <Input input={input} />
+                <Input error={error} input={input} />
             )
 
         case INPUT_ELEMENTS.TEXTAREA:
@@ -48,7 +61,7 @@ function SwitchRender(props) {
 function Form(props) {
     const { inputs, buttons } = props
 
-    const { handleSubmit, correct } = useForm(inputs)
+    const { handleSubmit, error } = useForm(inputs, () => { console.log('Form submit handler callback goes here') })
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -56,12 +69,12 @@ function Form(props) {
     }
 
     return (
-        <form className='form-body' onSubmit={(e) => onSubmit(e)}>
+        <form className='form-body' onSubmit={onSubmit}>
             {inputs.map((input, key) =>
-                <SwitchRender input={input} key={key} />
+                <SwitchRender error={error} input={input} key={key} />
             )}
             {buttons.map((button, key) =>
-                <div className={correct ? 'button-wrapper' : 'button-wrapper disabled'} key={key}>
+                <div className={'button-wrapper'} key={key}>
                     {button.component}
                 </div>
             )}
