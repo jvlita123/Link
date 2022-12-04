@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { INPUT_ELEMENTS, INPUT_TYPES } from '../constants/inputs'
 import Form from '../utility/Form'
@@ -6,8 +6,6 @@ import Button from '../utility/Button'
 
 function Login() {
     const navigate = useNavigate()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
 
     const inputFields = [
         {
@@ -16,8 +14,6 @@ function Login() {
             type: INPUT_TYPES.EMAIL,
             required: true,
             inputElement: INPUT_ELEMENTS.INPUT,
-            state: email,
-            setState: setEmail,
             className: 'plain',
             ref: useRef(),
             errorRef: useRef()
@@ -28,8 +24,6 @@ function Login() {
             type: INPUT_TYPES.PASSWORD,
             required: true,
             inputElement: INPUT_ELEMENTS.INPUT,
-            state: password,
-            setState: setPassword,
             className: 'plain',
             ref: useRef(),
             errorRef: useRef()

@@ -7,7 +7,7 @@ export default function useForm(inputs = [{}], submitCallback) {
      * ----------------- useForm -----------------
      * 
      * Custom hook to validate forms:
-     *  - takes input fields array as an only argument
+     *  - takes input fields array and callback function ( which will run after form has been successfully validated )
      *  - validates multiple fields in real time (as the user is typing)
      *  - inputs array should contain listed key-value pairs to fully benefit from this hook
      *
@@ -22,13 +22,13 @@ export default function useForm(inputs = [{}], submitCallback) {
      *  name: 'field name',
      *  type: INPUT_TYPES.FIELD_TYPE
      *  required: true / false,
-     *  state: state,
-     *  setState: () => {},
-     *  className: ''
+     *  className: '',
+     *  ref: useRef()
      * }]
      * 
      */
 
+    const [submit, setSubmit] = useState(false)
     const [error, setError] = useState([{}])
 
     // Compare 'password' field with 'confirm password' field (if exists)
@@ -37,8 +37,8 @@ export default function useForm(inputs = [{}], submitCallback) {
         let confirmPasswordField = inputs.find(input => input.name === 'confirm-password')
 
         if (confirmPasswordField) {
-            let password = passwordField.state
-            let confirmPassword = confirmPasswordField.state
+            let password = passwordField.ref.current.value
+            let confirmPassword = confirmPasswordField.ref.current.value
 
             if (password.length < 8) {
                 setError(prev => [...prev, {
@@ -49,14 +49,14 @@ export default function useForm(inputs = [{}], submitCallback) {
             } else {
                 if (confirmPassword !== password) {
                     setError(prev => [...prev,
-                        {
-                            field: passwordField['name'],
-                            message: 'Those passwords didn\'t match'
-                        },
-                        {
-                            field: confirmPasswordField['name'],
-                            message: 'Those passwords didn\'t match'
-                        }
+                    {
+                        field: passwordField['name'],
+                        message: 'Those passwords didn\'t match'
+                    },
+                    {
+                        field: confirmPasswordField['name'],
+                        message: 'Those passwords didn\'t match'
+                    }
                     ])
                 }
             }
@@ -68,7 +68,7 @@ export default function useForm(inputs = [{}], submitCallback) {
         // Find error field and validate its value
         let emailInputField = inputs.find(input => input.type === INPUT_TYPES.EMAIL)
         if (emailInputField) {
-            if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInputField['state'])) {
+            if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInputField.ref.current.value)) {
                 // Email not valid -> setError
                 setError(prev => [...prev, {
                     field: emailInputField['name'],
@@ -82,7 +82,7 @@ export default function useForm(inputs = [{}], submitCallback) {
     const checkRequired = () => {
         setError([])
         for (let i = 0; i < inputs.length; i++) {
-            if (inputs[i].required && inputs[i].state === '') {
+            if (inputs[i].required && inputs[i].ref.current.value === '') {
                 if (inputs[i].name === 'confirm-password') {
                     setError(prev => [...prev, {
                         field: inputs[i].name,
@@ -106,19 +106,16 @@ export default function useForm(inputs = [{}], submitCallback) {
         setSubmit(true)
     }
 
-    const [submit, setSubmit] = useState(false)
     const handleSubmit = () => {
-        if(!submit) { validateForm() }
+        if (!submit) { validateForm() }
     }
 
     useEffect(() => {
-        if(submit) {
-            if(error.length) {
+        if (submit) {
+            if (error.length) {
                 // Some fields have not been filled correctly
-                // console.log('Hold on, look at those error messages')
             } else {
                 // All good - form filled correctly
-                // console.log('Go ahead')
                 submitCallback()
             }
         }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { INPUT_ELEMENTS, INPUT_TYPES } from '../constants/inputs'
 import Form from '../utility/Form'
@@ -7,13 +7,12 @@ import Button from '../utility/Button'
 function Register() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const emailRef = useRef()
 
   useEffect(() => {
     if (searchParams.get('email')) {
-      setEmail(searchParams.get('email'))
+      emailRef.current.value = searchParams.get('email')
     }
   }, [searchParams])
 
@@ -24,9 +23,8 @@ function Register() {
       type: INPUT_TYPES.EMAIL,
       required: true,
       inputElement: INPUT_ELEMENTS.INPUT,
-      state: email,
-      setState: setEmail,
-      className: 'plain'
+      className: 'plain',
+      ref: emailRef
     },
     {
       name: 'password',
@@ -34,9 +32,8 @@ function Register() {
       type: INPUT_TYPES.PASSWORD,
       required: true,
       inputElement: INPUT_ELEMENTS.INPUT,
-      state: password,
-      setState: setPassword,
-      className: 'plain'
+      className: 'plain',
+      ref: useRef()
     },
     {
       name: 'confirm-password',
@@ -44,9 +41,8 @@ function Register() {
       type: INPUT_TYPES.PASSWORD,
       required: true,
       inputElement: INPUT_ELEMENTS.INPUT,
-      state: confirmPassword,
-      setState: setConfirmPassword,
-      className: 'plain'
+      className: 'plain',
+      ref: useRef()
     }
   ]
 

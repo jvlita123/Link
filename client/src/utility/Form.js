@@ -1,16 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { INPUT_ELEMENTS } from '../constants/inputs'
 import useForm from '../hooks/useForm'
 
 function Input(props) {
     const { input, error } = props
     const [focus, setFocus] = useState(false)
-    const inputElement = useRef()
     const [inputError, setInputError] = useState({ field: '', message: '' })
 
     useEffect(() => {
-        if (focus) inputElement.current.focus()
-    }, [focus])
+        if (focus) input.ref.current.focus()
+    }, [focus, input.ref])
 
     useEffect(() => {
         let errorElement = error.find(errorElement => errorElement.field === input.name)
@@ -23,12 +22,10 @@ function Input(props) {
 
     return (
         <>
-            <div ref={input.ref} onClick={() => setFocus(true)} className={'input-wrapper full-width ' + input.className + (focus ? ' focus ' : '') + (inputError.field === input.name ? ' error ' : '')}>
+            <div onClick={() => setFocus(true)} className={'input-wrapper full-width ' + input.className + (focus ? ' focus ' : '') + (inputError.field === input.name ? ' error ' : '')}>
                 <input
                     name={input.name}
-                    defaultValue={input.state}
-                    onChange={(e) => input.setState(e.target.value)}
-                    ref={inputElement}
+                    ref={input.ref}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
                     type={input.type}
