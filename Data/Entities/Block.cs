@@ -11,14 +11,14 @@ namespace Data.Entities
         public int Id { get; set; }
 
         [Required]
-        [Column("blo_userID")]
+        [Column("blo_usrID")]
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
 
         [Required]
-        [Column("blo_userIDBlocked")]
+        [Column("blo_usrIDBlocked")]
         public int BlockedUserId { get; set; }
 
         [NotMapped]

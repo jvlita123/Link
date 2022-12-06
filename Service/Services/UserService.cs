@@ -14,6 +14,7 @@ namespace Service.Services
             _userRepository = userRepository;
         }
 
+        //Lista wszystkich Userów
         public List<User> GetAll()
         {
             List<User> users = _userRepository.GetAll().ToList();
@@ -21,6 +22,7 @@ namespace Service.Services
             return users;
         }
 
+        //Znalezienie Usera po nazwie
         public MyUserDto? MyUser(string name)
         {
             var users = _userRepository.GetAll().ToList();
@@ -50,11 +52,12 @@ namespace Service.Services
             return myUserDto;
         }
 
-        public GetUserDto? Get(string name)
+        //Znalezienie Usera po jego IdKonta
+        public GetUserDto? Get(int id)
         {
             User? user = _userRepository.GetAll()
                 .Include(x => x.Photos)
-                .Where(x => x.Name == name)
+                .Where(x => x.AccountId == id)
                 .FirstOrDefault();
 
             if (user == null)
@@ -86,5 +89,44 @@ namespace Service.Services
 
             return path;
         }
+
+
+        public MyUserDto? MyUser(int id)
+        {
+            User? user = _userRepository.GetAll()
+                .Include(x => x.Photos)
+                .Where(x => x.AccountId == id)
+                .FirstOrDefault();
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            MyUserDto myUserDto = new MyUserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Gender = user.Gender,
+                PhoneNumber = user.PhoneNumber,
+                IsPremium = user.IsPremium,
+                ProfilePhoto = user.Photos.Where(p => p.IsProfilePicture).Select(p => p.Path).FirstOrDefault(),
+                Photos = user.Photos.Where(p => !p.IsProfilePicture).Select(p => p.Path).ToList(),
+            };
+
+            myUserDto.ProfilePhoto = CheckProfile(myUserDto.ProfilePhoto);
+
+            return myUserDto;
+        }
+
+        //Lista profili do wyświetlenia dla użytkownika
+        public List<User?> GetProfiles(int id)
+        {
+            List<User> users = _userRepository.GetAll()
+                .Where(x => x.AccountId != id).ToList();
+
+            return users;
+        }
+
     }
 }

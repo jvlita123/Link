@@ -79,8 +79,6 @@ namespace Api.Controllers
             .FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
             if (user != null)
             {
-                // Session["Id"] = usr.Id.ToString();
-                // Session["Email"] = usr.Email.ToString();
                 var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.Email),
@@ -106,14 +104,6 @@ namespace Api.Controllers
 
         public IActionResult LoggedIn()
         {
-            /* if(Session["Id"] != null)
-             {
-                 return View();
-             }
-             else
-             {
-                 return RedirectToAction("Login");
-             }*/
             return View();
         }
 
@@ -123,5 +113,19 @@ namespace Api.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("index", "Home");
         }
+
+
+        [HttpGet]
+        [Route("/byEmail")]
+
+        public IActionResult GetByEmail()
+        {
+            Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
+
+            return View(account);
+        }
+
+
+
     }
 }
