@@ -3,21 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Api</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Api.styles.css" asp-append-version="true" /> 
+    <title>@ViewData["Title"] - Link</title>
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/styles/main/main.css" />
+    
     <!-- React Components -->
     <script type="text/babel" src="~/js/App.jsx"></script>
     <script type="text/babel" src="~/js/components/utility/Button.jsx"></script>
     <script type="text/babel" src="~/js/components/Navbar.jsx"></script>
     <script type="text/babel" src="~/js/components/Footer.jsx"></script>
 
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <!-- Load React -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js" -->
     <script crossorigin src="@Url.Content("https://unpkg.com/react@18/umd/react.development.js")"></script>
     <script crossorigin src="@Url.Content("https://unpkg.com/react-dom@18/umd/react-dom.development.js")"></script>
     <script src="@Url.Content("https://unpkg.com/@babel/standalone/babel.min.js")"></script>
+
 </head>
 <body>
     <div id="root"></div>
@@ -29,7 +31,7 @@
             <>
                 <Navbar />
                 <div className='container'>
-                    <main role="main" class="pb-3">
+                    <main role="main">
                         @RenderBody()
                     </main>
                 </div>
