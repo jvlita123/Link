@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/Api.styles.css" asp-append-version="true" /> 
 </head>
 <body>
+    <div id="navbar"></div>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -51,8 +52,6 @@
         </main>
     </div>
 
-    <div id="root"></div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - Api - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -67,12 +66,13 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src='https://unpkg.com/&#64;babel/standalone/babel.min.js'></script>
 
-    <script type="text/babel" src="~/js/App.js"></script>
+    <script type="text/babel" src="~/js/App.jsx"></script>
+    <script type="text/babel" src="~/js/components/utility/Button.jsx"></script>
+    <script type="text/babel" src="~/js/components/Navbar.jsx"></script>
     
     <script defer type="text/babel">
-        const root = ReactDOM.createRoot(document.getElementById('root'))
-        root.render(<App />)
-        
+        const root = ReactDOM.createRoot(document.getElementById('navbar'))
+        root.render(<Navbar />)
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
