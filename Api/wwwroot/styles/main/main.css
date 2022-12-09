@@ -220,6 +220,23 @@ body #root .content .form-wrapper .form-content .form-header .form-title {
 body #root .content .form-wrapper .form-content form {
   margin-top: 28px;
 }
+body #root .content .form-wrapper .form-content form span.validation-message {
+  color: #be0000;
+}
+body #root .content .form-wrapper .form-content form span.validation-message.field-validation-error {
+  margin: 6px 4px;
+}
+body #root .content .form-wrapper .form-content form .validation-message ul {
+  list-style-type: none;
+  padding: 0;
+}
+body #root .content .form-wrapper .form-content form .validation-message ul li {
+  padding: 12px 20px;
+  color: #be0000;
+  background-color: rgb(248, 215, 218);
+  border-radius: 8px;
+  border: 2px solid rgb(245, 194, 199);
+}
 body #root .content .form-wrapper .form-content form .form-group {
   display: flex;
   flex-direction: column;
