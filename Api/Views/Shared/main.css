@@ -34,12 +34,6 @@ html a, html .link {
 html a:hover, html .link:hover {
   text-decoration: underline;
 }
-html a.button, html .link.button {
-  text-decoration: none;
-}
-html a.button:hover, html .link.button:hover {
-  text-decoration: none;
-}
 html .font-dimmed {
   color: rgba(17, 17, 17, 0.6705882353);
 }
@@ -61,7 +55,7 @@ html .button.dummy {
 }
 html .button.link-primary {
   color: #E38B29;
-  font-weight: 500;
+  font-weight: 700;
 }
 html .button.link-primary:hover {
   text-decoration: underline;
@@ -107,6 +101,7 @@ body #root nav {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
+  background-color: #be0000;
 }
 body #root nav .menu-toggle {
   display: none;
@@ -123,6 +118,9 @@ body #root nav .logo .logo-text {
   color: #404258;
   text-decoration: none;
   font-weight: 700;
+}
+body #root nav .nav-links {
+  background-color: #be0000;
 }
 body #root nav .nav-links ul {
   margin: 0;
@@ -198,15 +196,8 @@ body #root nav .nav-auth {
   }
 }
 body #root .content .form-wrapper {
-  margin-top: 40px;
   display: flex;
   justify-content: center;
-}
-body #root .content .form-wrapper .form-content {
-  background-color: #fff;
-  padding: 30px 50px;
-  border-radius: 20px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 body #root .content .form-wrapper .form-content .form-header {
   margin-bottom: 12px;
@@ -217,42 +208,11 @@ body #root .content .form-wrapper .form-content .form-header .form-title {
   color: #404258;
   font-weight: 500;
 }
-body #root .content .form-wrapper .form-content form {
-  margin-top: 28px;
-}
 body #root .content .form-wrapper .form-content form .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 10px;
-}
-body #root .content .form-wrapper .form-content form .form-group label {
-  color: rgba(17, 17, 17, 0.6705882353);
 }
 body #root .content .form-wrapper .form-content form .form-group input.form-input {
   width: 360px;
-  padding: 12px 15px;
-  border: none;
-  border: 2px solid rgba(99, 99, 99, 0.2);
-  border-radius: 8px;
-}
-body #root .content .form-wrapper .form-content form .form-group input.form-input::-moz-placeholder {
-  color: rgba(17, 17, 17, 0.3882352941);
-}
-body #root .content .form-wrapper .form-content form .form-group input.form-input:-ms-input-placeholder {
-  color: rgba(17, 17, 17, 0.3882352941);
-}
-body #root .content .form-wrapper .form-content form .form-group input.form-input::placeholder {
-  color: rgba(17, 17, 17, 0.3882352941);
-}
-body #root .content .form-wrapper .form-content form .button-wrapper {
-  margin-top: 35px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 5px;
-}
-body #root #footer {
-  margin-top: 40px;
-  text-align: center;
+  padding: 8px 12px;
 }/*# sourceMappingURL=main.css.map */

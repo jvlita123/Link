@@ -6,42 +6,45 @@
     <title>@ViewData["Title"] - Link</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="~/styles/main/main.css" />
-    
-    <!-- React Components -->
-    <script type="text/babel" src="~/js/App.jsx"></script>
-    <script type="text/babel" src="~/js/components/utility/Button.jsx"></script>
-    <script type="text/babel" src="~/js/components/Navbar.jsx"></script>
-    <script type="text/babel" src="~/js/components/Footer.jsx"></script>
-
-    <!-- Load React -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js" -->
-    <script crossorigin src="@Url.Content("https://unpkg.com/react@18/umd/react.development.js")"></script>
-    <script crossorigin src="@Url.Content("https://unpkg.com/react-dom@18/umd/react-dom.development.js")"></script>
-    <script src="@Url.Content("https://unpkg.com/@babel/standalone/babel.min.js")"></script>
-
+    <link rel="stylesheet" href="~/styles/main/main.css">
+    <script defer src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <nav>
+            <div class="logo">
+                <a class="button dummy">Log in</a>
+                <a class="button dummy">Sign up</a>
+                <a href="/" class="logo-text">Link</a>
+            </div>
+            <div class="regular nav-links">
+                <ul>
+                    <a href="/" class="nav-link"><li class="nav-item">Home</li></a>
+                    <a href="/" class="nav-link"><li class="nav-item">Love</li></a>
+                    <a href="/" class="nav-link"><li class="nav-item">Just chat</li></a>
+                    <a href="/" class="nav-link"><li class="nav-item">Friendzone</li></a>
+                </ul>
+            </div>
+            <div class="regular nav-auth">
+                <a asp-area="" asp-controller="Account" asp-action="Login" class="button link-primary">Log In</a>
+                <a asp-area="" asp-controller="Account" asp-action="Register" class="button primary">Sign Up</a>
+            </div>
+            <button class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
 
-    <script type="text/babel">
-        const root = ReactDOM.createRoot(document.getElementById('root'))
+        <div class="content">
+            @RenderBody()
+        </div>
 
-        const content = (
-            <>
-                <Navbar />
-                <div className='container'>
-                    <main role="main">
-                        @RenderBody()
-                    </main>
-                </div>
-                <Footer />
-            </>
-        )
-
-        root.render(content)
-    </script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+        <div id="footer">
+            <p>
+                &copy; 2022 - Link - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </p>
+        </div>
+    </div>
 </body>
 </html>
