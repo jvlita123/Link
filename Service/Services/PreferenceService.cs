@@ -6,10 +6,10 @@ namespace Service.Services
 {
     public class PreferenceService
     {
-        private readonly PreferenceRepository _preferenceRepository;
+        private readonly Data.Repositories.PreferenceRepository _preferenceRepository;
         private readonly RelationUserRepository _relationUserRepository;
 
-        public PreferenceService(PreferenceRepository preferenceRepository, RelationUserRepository relationUserRepository)
+        public PreferenceService(Data.Repositories.PreferenceRepository preferenceRepository, RelationUserRepository relationUserRepository)
         {
             _preferenceRepository = preferenceRepository;
             _relationUserRepository = relationUserRepository;

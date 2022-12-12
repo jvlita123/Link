@@ -1,6 +1,8 @@
 ﻿using Data.Entities;
 using Data.Repositories;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Service.Models.Profiles;
 
 namespace Service.Services
 {
@@ -45,6 +47,25 @@ namespace Service.Services
             }
 
             _relationUserRepository.SaveChanges();
+        }
+
+        public GetProfileViewModel GetProfile(int userId, int relId)
+        {
+            string name = _relationUserRepository.GetAllByRelation(userId, relId)
+                .Select(p => new SelectListItem(p.User.Name, p.Id.ToString()))
+                .FirstOrDefault()
+                .ToString();
+            string descrition = _relationUserRepository.GetAllByRelation(userId, relId)
+                .FirstOrDefault()
+                .ToString();
+
+            GetProfileViewModel profileViewModel = new GetProfileViewModel
+            {
+                Name = name,
+                Description = descrition  
+            };
+
+            return profileViewModel;
         }
     }
 }

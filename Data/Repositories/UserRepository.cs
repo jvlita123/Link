@@ -1,5 +1,6 @@
 ﻿using Api.Data;
 using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories
 {
@@ -25,5 +26,6 @@ namespace Data.Repositories
 
             return result;
         }
+        
     }
 }
