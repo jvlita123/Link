@@ -46,7 +46,6 @@ namespace Api.Controllers
         }
         */
 
-        //Lista wszystkich użytkownikow 
         public IActionResult GetAll()
         {
             List<User> users = _userService.GetAll();
@@ -58,11 +57,9 @@ namespace Api.Controllers
                 usersDto.Add(user);
 
             }
-
             return View(usersDto);
         }
 
-        //Lista profili do wyświetlenia
         public IActionResult GetProfiles()
         {
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
@@ -78,12 +75,5 @@ namespace Api.Controllers
 
             return View(usersDto);
         }
-
-
-
-
-
-
-
     }
 }

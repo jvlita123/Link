@@ -1,4 +1,6 @@
-﻿namespace Data.Dto_s.User
+﻿using Data.Entities;
+
+namespace Data.Dto_s.User
 {
     public class MyUserDto
     {

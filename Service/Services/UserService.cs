@@ -14,7 +14,6 @@ namespace Service.Services
             _userRepository = userRepository;
         }
 
-        //Lista wszystkich Userów
         public List<User> GetAll()
         {
             List<User> users = _userRepository.GetAll().ToList();
@@ -22,7 +21,15 @@ namespace Service.Services
             return users;
         }
 
-        //Znalezienie Usera po nazwie
+        public User GetById(int id)
+        {
+            User? user = _userRepository.GetAll()
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+
+            return user;
+        }
+
         public MyUserDto? MyUser(string name)
         {
             var users = _userRepository.GetAll().ToList();
@@ -52,7 +59,6 @@ namespace Service.Services
             return myUserDto;
         }
 
-        //Znalezienie Usera po jego IdKonta
         public GetUserDto? Get(int id)
         {
             User? user = _userRepository.GetAll()
@@ -90,7 +96,6 @@ namespace Service.Services
             return path;
         }
 
-
         public MyUserDto? MyUser(int id)
         {
             User? user = _userRepository.GetAll()
@@ -118,8 +123,16 @@ namespace Service.Services
 
             return myUserDto;
         }
+        public User GetByAccId(int id)
+        {
+            User user = _userRepository.GetAll()
+                .Where(x => x.AccountId == id)
+                .FirstOrDefault();
 
-        //Lista profili do wyświetlenia dla użytkownika
+            return user;
+        }
+
+
         public List<User?> GetProfiles(int id)
         {
             List<User> users = _userRepository.GetAll()
@@ -127,6 +140,5 @@ namespace Service.Services
 
             return users;
         }
-
     }
 }

@@ -43,7 +43,6 @@ namespace Api.Controllers
             return View();
         }
 
-        //Register
         public IActionResult Register()
         {
             return View();
@@ -66,7 +65,6 @@ namespace Api.Controllers
             return View();
         }
 
-        //Login
         public IActionResult Login()
         {
             return View();
@@ -114,18 +112,12 @@ namespace Api.Controllers
             return RedirectToAction("index", "Home");
         }
 
-
-        [HttpGet]
         [Route("/byEmail")]
-
         public IActionResult GetByEmail()
         {
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
 
             return View(account);
         }
-
-
-
     }
 }

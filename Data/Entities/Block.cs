@@ -24,5 +24,6 @@ namespace Data.Entities
         [NotMapped]
         [ForeignKey("BlockedUserId")]
         public virtual User BlockedUser { get; set; }
+
     }
 }
