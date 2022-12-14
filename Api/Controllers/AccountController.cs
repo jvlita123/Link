@@ -111,13 +111,5 @@ namespace Api.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("index", "Home");
         }
-
-        [Route("/byEmail")]
-        public IActionResult GetByEmail()
-        {
-            Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
-
-            return View(account);
-        }
     }
 }

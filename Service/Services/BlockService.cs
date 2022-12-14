@@ -7,11 +7,13 @@ namespace Service.Services
     {
         private readonly BlockRepository _blockRepository;
         private readonly UserRepository _userRepository;
+        private readonly EmployeeRepository _employeeRepository;
 
-        public BlockService(BlockRepository blockRepository, UserRepository userRepository)
+        public BlockService(BlockRepository blockRepository, UserRepository userRepository, EmployeeRepository employeeRepository)
         {
             _blockRepository = blockRepository;
             _userRepository = userRepository;
+            _employeeRepository = employeeRepository;
         }
 
         public List<Block> GetAll()
@@ -36,9 +38,25 @@ namespace Service.Services
         public Block? AddNewBlock(int userId, int blockedUserId)
         {
             User blockedUser = _userRepository.GetById(blockedUserId);
-            User user = _userRepository.GetById(userId);
+            User? user = _userRepository.GetById(userId);
 
-            if (blockedUser != null && user != null && blockedUserId != userId && (_blockRepository.GetAll().Where(x => x.UserId == userId && x.BlockedUserId == blockedUserId).FirstOrDefault()) == null)
+            if (_employeeRepository.GetById(userId) != null)
+            {
+                var newBlock = new Block()
+                {
+                    UserId = userId,
+                    BlockedUserId = blockedUserId,
+                    BlockedUser = _userRepository.GetById(blockedUserId),
+                    // User = _userRepository.GetById(userId),
+                };
+
+                blockedUser.IsBlock = true;
+                _blockRepository.AddAndSaveChanges(newBlock);
+
+                return newBlock;
+            }
+
+            else if (blockedUser != null && user != null && blockedUserId != userId && (_blockRepository.GetAll().Where(x => x.UserId == userId && x.BlockedUserId == blockedUserId).FirstOrDefault()) == null)
             {
                 var newBlock = new Block()
                 {
