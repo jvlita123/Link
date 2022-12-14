@@ -1,0 +1,275 @@
+/**
+ * 
+ * ---------------- Basic Colors ----------------
+ * 
+ */
+/**
+ * 
+ * ---------------- Light Colors ----------------
+ * 
+ */
+/**
+ * 
+ * ---------------- Dark Colors ----------------
+ * 
+ */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  /**
+   * ---------------- BUTTONS ----------------
+   */
+}
+html p, html h1, html h2, html h3, html h4, html h5, html h6 {
+  margin: 0;
+}
+html a, html .link {
+  color: #0d6efd;
+  text-decoration: none;
+  cursor: pointer;
+}
+html a:hover, html .link:hover {
+  text-decoration: underline;
+}
+html a.button, html .link.button {
+  text-decoration: none;
+}
+html a.button:hover, html .link.button:hover {
+  text-decoration: none;
+}
+html .font-dimmed {
+  color: rgba(17, 17, 17, 0.6705882353);
+}
+html .button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  border-radius: 6px;
+}
+html .button:active {
+  transform: scale(0.9);
+}
+html .button.dummy {
+  visibility: hidden;
+  pointer-events: none;
+}
+html .button.link-primary {
+  color: #E38B29;
+  font-weight: 500;
+}
+html .button.link-primary:hover {
+  text-decoration: underline;
+}
+html .button.link-primary:active {
+  transform: none;
+}
+html .button.primary {
+  background-color: #F1A661;
+  color: #EEEEEE;
+  font-weight: 700;
+}
+html .button.primary:hover {
+  background-color: #E38B29;
+}
+html .button.outline-primary {
+  border: 2px solid #F1A661;
+  color: #E38B29;
+  font-weight: 700;
+}
+html .button.outline-primary:hover {
+  background-color: #F1A661;
+  color: #EEEEEE;
+}
+
+body {
+  background-color: #EEEEEE;
+  font-family: "Roboto", sans-serif;
+  color: #404258;
+  display: flex;
+  justify-content: center;
+}
+body #root {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  /**
+      * ---------------- NAVBAR ----------------
+      */
+}
+body #root nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+body #root nav .menu-toggle {
+  display: none;
+}
+body #root nav .logo {
+  position: relative;
+}
+body #root nav .logo .logo-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  font-size: 2em;
+  color: #404258;
+  text-decoration: none;
+  font-weight: 700;
+}
+body #root nav .nav-links ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  gap: 30px;
+}
+body #root nav .nav-links ul .nav-link {
+  color: #3C4048;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: 0.2s ease-in-out;
+}
+body #root nav .nav-links ul .nav-link:hover {
+  color: #E38B29;
+  transform: translateY(-2px);
+}
+body #root nav .nav-links ul .nav-link::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+  position: absolute;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  transition: 0.2s ease-in-out;
+}
+body #root nav .nav-links ul .nav-link.active {
+  color: #F1A661;
+}
+body #root nav .nav-links ul .nav-link.active::after {
+  background-color: #F1A661;
+}
+body #root nav .nav-auth {
+  display: flex;
+  gap: 8px;
+}
+@media screen and (max-width: 760px) {
+  body #root nav .regular {
+    display: none;
+  }
+  body #root nav .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    cursor: pointer;
+  }
+  body #root nav .menu-toggle:hover span:nth-of-type(1) {
+    transform: translateX(1px);
+  }
+  body #root nav .menu-toggle:hover span:nth-of-type(2) {
+    transform: translateX(-1px);
+  }
+  body #root nav .menu-toggle:hover span:nth-of-type(3) {
+    transform: translateX(1px);
+  }
+  body #root nav .menu-toggle span {
+    transition: 0.2s ease-in-out;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #404258;
+  }
+}
+body #root .content .form-wrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+body #root .content .form-wrapper .form-content {
+  background-color: #fff;
+  padding: 30px 50px;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+body #root .content .form-wrapper .form-content .form-header {
+  margin-bottom: 12px;
+}
+body #root .content .form-wrapper .form-content .form-header .form-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #404258;
+  font-weight: 500;
+}
+body #root .content .form-wrapper .form-content form {
+  margin-top: 28px;
+}
+body #root .content .form-wrapper .form-content form span.validation-message {
+  color: #be0000;
+}
+body #root .content .form-wrapper .form-content form span.validation-message.field-validation-error {
+  margin: 6px 4px;
+}
+body #root .content .form-wrapper .form-content form .validation-message ul {
+  list-style-type: none;
+  padding: 0;
+}
+body #root .content .form-wrapper .form-content form .validation-message ul li {
+  padding: 12px 20px;
+  color: #be0000;
+  background-color: rgb(248, 215, 218);
+  border-radius: 8px;
+  border: 2px solid rgb(245, 194, 199);
+}
+body #root .content .form-wrapper .form-content form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+body #root .content .form-wrapper .form-content form .form-group label {
+  color: rgba(17, 17, 17, 0.6705882353);
+}
+body #root .content .form-wrapper .form-content form .form-group input.form-input {
+  width: 360px;
+  padding: 12px 15px;
+  border: none;
+  border: 2px solid rgba(99, 99, 99, 0.2);
+  border-radius: 8px;
+}
+body #root .content .form-wrapper .form-content form .form-group input.form-input::-moz-placeholder {
+  color: rgba(17, 17, 17, 0.3882352941);
+}
+body #root .content .form-wrapper .form-content form .form-group input.form-input:-ms-input-placeholder {
+  color: rgba(17, 17, 17, 0.3882352941);
+}
+body #root .content .form-wrapper .form-content form .form-group input.form-input::placeholder {
+  color: rgba(17, 17, 17, 0.3882352941);
+}
+body #root .content .form-wrapper .form-content form .button-wrapper {
+  margin-top: 35px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+}
+body #root #footer {
+  margin-top: 40px;
+  text-align: center;
+}/*# sourceMappingURL=main.css.map */

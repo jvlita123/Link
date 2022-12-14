@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Service.Services.ViewModels.User
 {
     public class UserRegisterViewModel
     {
-        [Key]
-        public int UserId { get; set; }
         [Required(ErrorMessage = "Email is required.")]
         public string Email { get; set; }
 
@@ -21,6 +14,5 @@ namespace Service.Services.ViewModels.User
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Please confirm your password.")]
         public string ConfirmPassword { get; set; }
-
     }
 }
