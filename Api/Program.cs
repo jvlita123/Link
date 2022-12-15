@@ -67,6 +67,8 @@ namespace Api
             builder.Services.AddScoped<UserAchievementRepository>();
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<UserRepository>();
+            builder.Services.AddScoped<BlockService>();
+            builder.Services.AddScoped<BlockRepository>();
 
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();

@@ -26,6 +26,15 @@ namespace Service.Services
             return accounts;
         }
 
+        public Account? GetByEmail(string email)
+        {
+            Account? account = _accountRepository.GetAll()
+                .Where(x => x.Email == email)
+                .FirstOrDefault();
+
+            return account;
+        }
+
         public Account Add(Account account)
         {
             Account? newAccount = _accountRepository.AddAndSaveChanges(account);

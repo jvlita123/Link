@@ -52,7 +52,7 @@ namespace Data.Entities
 
         public virtual ICollection<Photo>? Photos { get; set; }
 
-        //public virtual ICollection<Block> Blocks { get; set; }
+        public virtual ICollection<Block> Blocks { get; set; }
 
         //public virtual ICollection<Message> Messages { get; set; }
 
