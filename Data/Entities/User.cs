@@ -54,7 +54,7 @@ namespace Data.Entities
 
         public virtual ICollection<Block> Blocks { get; set; }
 
-        //public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
 
         //public virtual ICollection<Match> Matches { get; set; }
 
