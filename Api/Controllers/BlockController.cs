@@ -41,7 +41,7 @@ namespace Api.Controllers
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
             User? user = _userService.GetByAccId(account.Id);
 
-            var newBlock = _blockService.AddNewBlock(user.Id, blockedUserId);
+            _blockService.AddNewBlock(user.Id, blockedUserId);
 
             return View();
         }
@@ -59,7 +59,7 @@ namespace Api.Controllers
         public IActionResult Unblock(int blockedUserId)
         {
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
-            User? user = _userService.GetByAccId(account.Id);
+            MyUserDto? user = _userService.MyUser(account.Id);
 
             _blockService.Unblock(user.Id, blockedUserId);
 

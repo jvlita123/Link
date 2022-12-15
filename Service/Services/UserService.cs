@@ -137,7 +137,7 @@ namespace Service.Services
 
             return myUserDto;
         }
-        public User GetByAccId(int id)
+        public User? GetByAccId(int id)
         {
             User user = _userRepository.GetAll()
                 .Where(x => x.AccountId == id)
