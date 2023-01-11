@@ -7,6 +7,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="~/styles/main/main.css">
+
+    <!-- Scripts -->
     <script defer src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
@@ -46,5 +48,6 @@
             </p>
         </div>
     </div>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
