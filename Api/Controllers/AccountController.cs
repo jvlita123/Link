@@ -45,7 +45,6 @@ namespace Api.Controllers
             return View();
         }
 
-        //Register
         public IActionResult Register()
         {
             return View();
@@ -68,7 +67,6 @@ namespace Api.Controllers
             return View();
         }
 
-        //Login
         public IActionResult Login()
         {
             return View();
@@ -80,12 +78,14 @@ namespace Api.Controllers
             Account? user = _accountService.GetAll().FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
             if (user != null)
             {
+
                 int userId = _userService.GetUserIdByAccountId(user.Id);
                 string userName = _userService.GetUserNameByAccountId(user.Id);
+
                 var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-                        new Claim(ClaimTypes.Name, userName),
+                        new Claim(ClaimTypes.Name, user.Email),
                         new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Role, "User"),
                     };
@@ -99,6 +99,7 @@ namespace Api.Controllers
 
                 return RedirectToAction("LoggedIn");
             }
+
             else
             {
                 ModelState.AddModelError("", "Email or Password is wrong.");
@@ -109,14 +110,6 @@ namespace Api.Controllers
 
         public IActionResult LoggedIn()
         {
-            /* if(Session["Id"] != null)
-             {
-                 return View();
-             }
-             else
-             {
-                 return RedirectToAction("Login");
-             }*/
             return View();
         }
 

@@ -1,0 +1,28 @@
+﻿@model Data.Entities.Block
+
+@{
+    ViewData["Title"] = "Unblock";
+}
+
+<h1>Unblock</h1>
+
+<h3>Are you sure you want to unblock this idiot????!!!</h3>
+<div>
+    <h4>Block</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Unblock">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="BlockedUserId" class="control-label"></label>
+                    <input asp-for="BlockedUserId" class="form-control" />
+                    <span asp-validation-for="BlockedUserId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Unblock" class="btn btn-danger" /> |
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
