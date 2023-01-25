@@ -4,7 +4,11 @@
     ViewData["Title"] = "My Chats";
 }
 <div class="list-container message-list">
-    @foreach (var item in Model) {
+    <div class="message-row section-title">
+        <h2>Latest Chats</h2>
+    </div>
+    @foreach (var item in Model)
+    {
         <a href="GetConversation?id=@item.Id" class="message-row">
             <div class="message-row-content">
                 <div class="header-wrapper">

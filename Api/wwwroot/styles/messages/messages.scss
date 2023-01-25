@@ -53,6 +53,12 @@
         transition: .2s ease-in-out;
         width: 400px;
 
+        &.section-title {
+            &:hover {
+                background-color: transparent;
+            }
+        }
+
         &:hover {
             background-color: rgba(187, 187, 187, 0.4);
             text-decoration: none;

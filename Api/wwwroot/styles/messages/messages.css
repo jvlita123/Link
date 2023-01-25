@@ -25,6 +25,9 @@
   transition: 0.2s ease-in-out;
   width: 400px;
 }
+.list-container.message-list .message-row.section-title:hover {
+  background-color: transparent;
+}
 .list-container.message-list .message-row:hover {
   background-color: rgba(187, 187, 187, 0.4);
   text-decoration: none;
