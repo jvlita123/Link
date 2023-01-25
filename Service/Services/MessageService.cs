@@ -1,5 +1,6 @@
 ﻿using Data.Entities;
 using Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Service.Services
 {
@@ -60,7 +61,7 @@ namespace Service.Services
                 return null;
             }
         }
-        
+
         public List<Message> GetUserMessages(int id)
         {
             List<Message> messages = _messageRepository.GetAll().Where(x => x.SecondUserId == id).ToList();
@@ -75,51 +76,34 @@ namespace Service.Services
 
         public List<User> GetUserConversations(int id)
         {
-          //  List<Message> messages = _messageRepository.GetAll().Where(x => x.FirstUserId == id || x.SecondUserId == id).ToList();
             List<User> users = new List<User>();
+            List<Message> messages = _messageRepository.GetAll().Where(x => x.SecondUserId == id || x.FirstUserId == id).ToList();
 
-
-            List<Message> sentMessages = _messageRepository.GetAll().Where(x => x.FirstUserId == id).ToList();//SENT MESSAGES
-            List<Message> receivedMessages = _messageRepository.GetAll().Where(x => x.SecondUserId == id).ToList();//RECEIVED
-
-            if (sentMessages.Count>0)
+            foreach (var message in messages)
             {
-                foreach(var message in sentMessages)
-                {
-                    message.SecondUser = _userRepository.GetById(message.SecondUserId);
+                message.SecondUser = _userRepository.GetAll().Include(x=>x.Photos).Where(x => x.Id == message.SecondUserId).FirstOrDefault();
+                message.FirstUser = _userRepository.GetAll().Include(x=>x.Photos).Where(x => x.Id == message.FirstUserId).FirstOrDefault();
 
-                    if (!(users.Contains(message.SecondUser)))
-                    {
-                        users.Add(message.SecondUser);
-                    }
+                if (!(users.Contains(message.SecondUser)))
+                {
+                    users.Add(message.SecondUser);
+                }
+                else if (!(users.Contains(message.FirstUser)))
+                {
+                    users.Add(message.FirstUser);
                 }
             }
-
-            if (receivedMessages.Count > 0)
-            {
-                foreach (var message in receivedMessages)
-                {
-                    message.SecondUser = _userRepository.GetById(message.SecondUserId);
-
-                    if (!(users.Contains(message.SecondUser)))
-                    {
-                        users.Add(message.SecondUser);
-                    }
-                }
-            }
-
             return users;
         }
 
         public List<Message> GetConversation(int firstUserId, int secondUserId)
         {
-            List<Message> messages = _messageRepository.GetAll().Where(x => x.FirstUserId == firstUserId && x.SecondUserId == secondUserId ||( x.FirstUserId == secondUserId && x.SecondUserId == firstUserId)).ToList();
+            List<Message> messages = _messageRepository.GetAll().Where(x => x.FirstUserId == firstUserId && x.SecondUserId == secondUserId || (x.FirstUserId == secondUserId && x.SecondUserId == firstUserId)).ToList();
 
-           
             foreach (var message in messages)
             {
-                message.FirstUser = _userRepository.GetById(message.FirstUserId);
-                message.SecondUser = _userRepository.GetById(message.SecondUserId);
+                message.FirstUser = _userRepository.GetAll().Include(x => x.Photos).Where(x => x.Id == message.FirstUserId).FirstOrDefault();
+                message.SecondUser = _userRepository.GetAll().Include(x => x.Photos).Where(x => x.Id == message.SecondUserId).FirstOrDefault();
             }
             return messages;
         }

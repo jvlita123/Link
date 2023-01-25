@@ -19,15 +19,19 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+
+@foreach (var item in Model) 
+{
         <tr>
             <td>
+              @if(item.Photos.Count>0)
+              {
+                <img src="~/Photos/@item.Photos.FirstOrDefault().Path" height="50" width="50" />
+              }
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-
             <td>
                 @Html.ActionLink("OPEN", "GetConversation", new { id=item.Id }) |
-
             </td>
         </tr>
 }

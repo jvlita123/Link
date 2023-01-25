@@ -79,7 +79,6 @@ namespace Api.Controllers
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
             User user = _userService.GetByAccId(account.Id);
             List<User> userConversation = _messageService.GetUserConversations(user.Id);
-
             return View(userConversation);
         }
 
@@ -92,7 +91,7 @@ namespace Api.Controllers
             User user = _userService.GetByAccId(account.Id);
 
             List<Message> conversation = new List<Message>();
-            conversation = _messageService.GetConversation(user.Id,id); //GetConversation(user.Id, id);
+            conversation = _messageService.GetConversation(user.Id,id);
       
             return View(conversation);
         }
