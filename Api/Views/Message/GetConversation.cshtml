@@ -45,3 +45,27 @@
       }
     </tbody>
 </table>
+
+@{
+    ViewData["Title"] = "SendMessage";
+}
+
+<h1>SendMessage</h1>
+
+<h4>Message</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendMessage">
+            <div class="form-group">
+                <input asp-for=@Model.FirstOrDefault().Text class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
