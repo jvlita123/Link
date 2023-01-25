@@ -27,15 +27,10 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("/SendMessage")]
-        public IActionResult SendMessageConversation(int secondUserId, string text)
+        public IActionResult SendMessage()
         {
-
-            Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
-            User? user = _userService.GetByAccId(account.Id);
-
-            _messageService.SendMessage(user.Id, secondUserId, text);
             return View();
-                }
+        }
 
         [HttpPost]
         [Authorize]
@@ -44,12 +39,9 @@ namespace Api.Controllers
         {
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
             User? user = _userService.GetByAccId(account.Id);
-
             _messageService.SendMessage(user.Id, secondUserId, text);
 
-            //return View();
             return RedirectToAction("GetConversation", new { id = secondUserId });
-
         }
 
         [HttpGet]
