@@ -1,0 +1,111 @@
+/**
+ * 
+ * ---------------- Basic Colors ----------------
+ * 
+ */
+
+ $green: green;
+ $yellow: yellow;
+ $red: #be0000;
+ $accent-blue: #5F9DF7;
+ $navy-blue: #0d6efd;
+ $vivid-orange: #FF731D;
+ 
+ /**
+  * 
+  * ---------------- Light Colors ----------------
+  * 
+  */
+ 
+ // Background
+ $light-background-color: #EEEEEE;
+ $light-accent-background-color: #FDEEDC;
+ $light-dimmed-background-color: #FFD8A9;
+ 
+ // Font
+ $light-font-color: #404258;
+ $light-accent-font-color: #E38B29;
+ $light-accent-dimmed-font-color: #F1A661;
+ $light-dimmed-font-color: #3C4048;
+ $light-extra-dimmed-font-color: #111111ab;
+ 
+ /**
+  * 
+  * ---------------- Dark Colors ----------------
+  * 
+  */
+ 
+ // Background
+ $dark-background-color: #111111;
+ 
+ // Font
+ $dark-font-color: #EEEEEE;
+
+.list-container.message-list {
+    padding-top: 50px;
+    display: grid;
+    gap: 12px;
+    justify-content: center;
+
+    .message-row {
+        padding: 12px 30px;
+        border-radius: 16px;
+        transition: .2s ease-in-out;
+        width: 400px;
+
+        &:hover {
+            background-color: rgba(187, 187, 187, 0.4);
+            text-decoration: none;
+
+            .message-row-content {
+                .header-wrapper {
+
+                    h2 {
+                        color: $dark-background-color;
+                    }
+                }
+                
+                i {
+                    color: $dark-background-color;
+                    transform: translateX(0);
+                }
+            }
+        }
+
+        .message-row-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .header-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                .image-wrapper {
+                    &.rounded {
+                        img {
+                            width: 55px;
+                            height: 55px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                            object-position: center;
+                        }
+                    }
+                }
+                
+                h2 {
+                    color: $light-font-color;
+                    transition: .1s ease-in-out;
+                }
+            }
+
+            i {
+                color: $light-font-color;
+                color: transparent;
+                transform: translateX(-10px);
+                transition: .2s ease-in-out;
+            }
+        }
+    }
+}

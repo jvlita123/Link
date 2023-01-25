@@ -3,23 +3,23 @@
 @{
     ViewData["Title"] = "My Chats";
 }
-
-<table class="table">
-    <tbody>
-@foreach (var item in Model) 
-{
-        <tr>
-            <td>
-              @if(item.Photos.Count>0)
-              {
-                <img src="~/Photos/@item.Photos.FirstOrDefault().Path" height="50" width="50" />
-              }
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("OPEN", "GetConversation", new { id=item.Id }) |
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="list-container message-list">
+    @foreach (var item in Model) {
+        <a href="GetConversation?id=@item.Id" class="message-row">
+            <div class="message-row-content">
+                <div class="header-wrapper">
+                    <div class="image-wrapper rounded">
+                        @if (item.Photos.Count > 0)
+                        {
+                            <img src="~/Photos/@item.Photos.FirstOrDefault().Path" height="50" width="50"/>
+                        }
+                    </div>
+                    <h2>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </h2>
+                </div>
+                <i class="bi bi-chevron-right"></i>
+            </div>
+        </a>
+    }
+</div>

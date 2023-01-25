@@ -1,29 +1,28 @@
 ﻿@model Data.Entities.Message
 
 @{
-    ViewData["Title"] = "SendMessage";
+    ViewData["Title"] = "Messenger";
 }
 
-<h1>SendMessage</h1>
-
-<h4>Message</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="form-wrapper  wide">
+    <div class="form-content">
+        <div class="form-header">
+            <h2 class="form-title">Our Messenger</h2>
+        </div>
         <form asp-action="SendMessage">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="validation-message"></div>
             <div class="form-group">
                 <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
-                <span asp-validation-for="Text" class="text-danger"></span>
+                <textfield asp-for="Text" class="form-input" placeholder="Content"></textfield>
+                <span asp-validation-for="Text" class="validation-message"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SecondUserId" class="control-label"></label>
-                <input asp-for="SecondUserId" class="form-control" />
-                <span asp-validation-for="SecondUserId" class="text-danger"></span>
+                <input asp-for="SecondUserId" required class="form-input" placeholder="Recipient" />
+                <span asp-validation-for="SecondUserId" class="validation-message"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="button-wrapper">
+                <input type="submit" value="Submit" class="button primary"/>
             </div>
         </form>
     </div>
