@@ -14,10 +14,18 @@
  * 
  */
 .list-container.message-list {
-  padding-top: 50px;
+  margin-top: 50px;
   display: grid;
   gap: 12px;
   justify-content: center;
+  background-color: #FFFFFF;
+  width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px 20px;
+  border-radius: 16px;
+  border: 2px solid rgba(143, 143, 143, 0.3);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .list-container.message-list .message-row {
   padding: 12px 30px;
@@ -27,6 +35,14 @@
 }
 .list-container.message-list .message-row.section-title:hover {
   background-color: transparent;
+}
+.list-container.message-list .message-row.section-title::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: rgba(143, 143, 143, 0.2);
+  margin-top: 12px;
 }
 .list-container.message-list .message-row:hover {
   background-color: rgba(187, 187, 187, 0.4);
