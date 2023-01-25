@@ -54,6 +54,7 @@
     border-radius: 16px;
     border: 2px solid rgba(143, 143, 143, 0.3);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-sizing: border-box;
     
     .message-row {
         padding: 12px 30px;
@@ -128,6 +129,76 @@
                 color: transparent;
                 transform: translateX(-10px);
                 transition: .2s ease-in-out;
+            }
+        }
+    }
+
+    &.wide {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+
+        .message-row {
+            width: unset;
+            width: 1000px;
+            margin-left: 0;
+            margin-right: 0;
+            box-sizing: border-box;
+
+            &.section-title {
+                width: 100%;
+            }
+        }
+
+        .message-item {
+            padding: 2px 30px;
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+
+            &.right {
+                justify-content: flex-end;
+            }
+
+            .message-user-image {
+                img {
+                    width: 50px;
+                    height: 50px;
+                    object-position: center;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                }
+            }
+
+            &.left {
+                .message-wrapper {
+                    .username {
+                        text-align: left;
+                    }
+
+                    .message-text {
+                        background-color: rgba(107, 107, 107, 0.2);
+                        border-radius: 0 22px 22px 22px;
+                        color: $light-font-color;
+                    }
+                }
+            }
+
+            .message-wrapper {
+                .username {
+                    margin-bottom: 5px;
+                    text-align: right;
+                }
+                
+                .message-text {
+                    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+                    background-color: $light-accent-dimmed-font-color;
+                    color: $dark-background-color;
+                    padding: 10px 20px;
+                    border-radius: 22px 0 22px 22px;
+                }
             }
         }
     }

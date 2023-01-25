@@ -4,44 +4,98 @@
     ViewData["Title"] = "";
 }
 
-<table class="table">
-    <tbody>
-
-    @foreach (var item in Model) {
-
-            @if(Model.FirstOrDefault().FirstUser.Messages.Contains(item))
-            {
-                <tr style="color: mediumvioletred">
-            <td> 
-                          
-                 @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0)
-                {
-                            <img src="~/Photos/@Model.FirstOrDefault().SecondUser.Photos.FirstOrDefault().Path" height="50" width="50" />
-                }
-                    @Html.DisplayFor(modelItem => item.FirstUser.Name)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Text)
-            </td>
-                </tr>
-            }
-
-            @if (!(Model.FirstOrDefault().FirstUser.Messages.Contains(item)))
-            {
-                <tr style="color: darkslategrey">
-                    <td>
-                 @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0)
-                {
-                            <img src="~/Photos/@Model.FirstOrDefault().FirstUser.Photos.FirstOrDefault().Path" height="50" width="50" />
-                        }
+<div class="list-container message-list wide">
+    <div class="message-row section-title">
+        <h2>Conversation with <span>@Model.FirstOrDefault().FirstUser.Name</span></h2>
+        <a href="/userconversations">
+            Back to list
+        </a>
+    </div>
+    
+    @foreach (var item in Model)
+    {
+        @if(Model.FirstOrDefault().FirstUser.Messages.Contains(item))
+        {
+            <div class="message-item right">
+                <div class="message-wrapper">
+                    <p class="username">
                         @Html.DisplayFor(modelItem => item.FirstUser.Name)
-
-                    </td>
-                    <td>
+                    </p>
+                    
+                    <p class="message-text">
                         @Html.DisplayFor(modelItem => item.Text)
-                    </td>
-                </tr>
-            }
-      }
-    </tbody>
-</table>
+                    </p>
+                </div>
+                @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0)
+                {
+                    <div class="message-user-image">
+                        <img src="~/Photos/@Model.FirstOrDefault().SecondUser.Photos.FirstOrDefault().Path" height="50" width="50"/>
+                    </div>
+                }
+            </div>
+        }
+        
+        @if (!(Model.FirstOrDefault().FirstUser.Messages.Contains(item)))
+        {
+            <div class="message-item left">
+                @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0)
+                {
+                    <div class="message-user-image">
+                        <img src="~/Photos/@Model.FirstOrDefault().FirstUser.Photos.FirstOrDefault().Path" height="50" width="50"/>
+                    </div>
+                }
+                <div class="message-wrapper">
+                    <p class="username">
+                        @Html.DisplayFor(modelItem => item.FirstUser.Name)
+                    </p>
+                    <p class="message-text">
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </p>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+@* <table class="table"> *@
+@*     <tbody> *@
+@* *@
+@*     @foreach (var item in Model) { *@
+@* *@
+@*             @if(Model.FirstOrDefault().FirstUser.Messages.Contains(item)) *@
+@*             { *@
+@*                 <tr style="color: mediumvioletred"> *@
+@*             <td>  *@
+@*                            *@
+@*                  @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0) *@
+@*                 { *@
+@*                             <img src="~/Photos/@Model.FirstOrDefault().SecondUser.Photos.FirstOrDefault().Path" height="50" width="50" /> *@
+@*                 } *@
+@*                     @Html.DisplayFor(modelItem => item.FirstUser.Name) *@
+@*             </td> *@
+@*             <td> *@
+@*                     @Html.DisplayFor(modelItem => item.Text) *@
+@*             </td> *@
+@*                 </tr> *@
+@*             } *@
+@* *@
+@*             @if (!(Model.FirstOrDefault().FirstUser.Messages.Contains(item))) *@
+@*             { *@
+@*                 <tr style="color: darkslategrey"> *@
+@*                     <td> *@
+@*                  @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0) *@
+@*                 { *@
+@*                             <img src="~/Photos/@Model.FirstOrDefault().FirstUser.Photos.FirstOrDefault().Path" height="50" width="50" /> *@
+@*                         } *@
+@*                         @Html.DisplayFor(modelItem => item.FirstUser.Name) *@
+@* *@
+@*                     </td> *@
+@*                     <td> *@
+@*                         @Html.DisplayFor(modelItem => item.Text) *@
+@*                     </td> *@
+@*                 </tr> *@
+@*             } *@
+@*       } *@
+@*     </tbody> *@
+@* </table> *@
