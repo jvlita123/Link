@@ -2,6 +2,7 @@
 using Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Packaging;
 using Service.Services;
 
 namespace Api.Controllers
@@ -56,6 +57,44 @@ namespace Api.Controllers
             List<Message> messages = _messageService.GetUserMessages(user.Id);
 
             return View(messages);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("/SentMessages")]
+        public IActionResult GetSentMessages()
+        {
+            Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
+            User user = _userService.GetByAccId(account.Id);
+            List<Message> messages = _messageService.GetSentMessages(user.Id);
+
+            return View(messages);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("/UserConversations")]
+        public IActionResult GetUserConversations()
+        {
+            Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
+            User user = _userService.GetByAccId(account.Id);
+            List<User> userConversation = _messageService.GetUserConversations(user.Id);
+
+            return View(userConversation);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("/GetConversation")]
+        public IActionResult GetConversation(int id)
+        {
+            Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
+            User user = _userService.GetByAccId(account.Id);
+
+            List<Message> conversation = new List<Message>();
+            conversation = _messageService.GetConversation(user.Id,id); //GetConversation(user.Id, id);
+      
+            return View(conversation);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Service.Services
                     UserId = userId,
                     BlockedUserId = blockedUserId,
                     BlockedUser = _userRepository.GetById(blockedUserId),
-                    // User = _userRepository.GetById(userId),
+                 //   User = _userRepository.GetById(userId),
                 };
 
                 blockedUser.IsBlock = true;

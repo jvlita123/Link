@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Data.Entities.Message>
 
 @{
-    ViewData["Title"] = "GetReceivedMessages";
+    ViewData["Title"] = "SENT MESSAGES";
 }
 
 <h1>GetReceivedMessages</h1>
@@ -31,26 +31,25 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstUserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondUserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReactionId)
-            </td>
-            <td>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstUserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondUserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReactionId)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
