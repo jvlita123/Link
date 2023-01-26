@@ -1,4 +1,5 @@
-﻿using Data.Repositories;
+﻿using Data.Entities;
+using Data.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Service.Models.Relation;
 
@@ -15,21 +16,28 @@ namespace Service.Services
             _relationUserRepository = relationUserRepository;
         }
 
+        public List<Preference> GetAllByType(string type)
+        {
+            List<Preference> preferences = _preferenceRepository.GetAllByType(type).ToList();
+
+            return preferences;
+        }
+
         public GetRelationViewModel GetPreferences(int userId, int relId)
         {
-            List<SelectListItem>? gendersPreference = _preferenceRepository.GetAllByType("Gender")
+            List<SelectListItem>? gendersPreference = this.GetAllByType("Gender")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 
-            List<SelectListItem>? minHeightsPreference = _preferenceRepository.GetAllByType("MinHeight")
+            List<SelectListItem>? minHeightsPreference = this.GetAllByType("MinHeight")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 
-            List<SelectListItem>? maxHeightsPreference = _preferenceRepository.GetAllByType("MaxHeight")
+            List<SelectListItem>? maxHeightsPreference = this.GetAllByType("MaxHeight")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 
-            List<SelectListItem>? localizationsPreference = _preferenceRepository.GetAllByType("Localization")
+            List<SelectListItem>? localizationsPreference = this.GetAllByType("Localization")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 

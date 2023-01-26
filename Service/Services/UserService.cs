@@ -110,6 +110,30 @@ namespace Service.Services
             return path;
         }
 
+        public NavUserDto GetNavUserDto(int id)
+        {
+            User? user = _userRepository.GetAll()
+                .Include(x => x.Photos)
+                .Where(x => x.AccountId == id)
+                .FirstOrDefault();
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            NavUserDto navUser = new NavUserDto
+            {
+                Name = user.Name,
+                Email = user.Account.Email,
+                ProfilePhoto = user.Photos.Where(p => p.IsProfilePicture).Select(p => p.Path).FirstOrDefault(),
+            };
+
+            navUser.ProfilePhoto = CheckProfile(navUser.ProfilePhoto);
+
+            return navUser;
+        }
+
         public MyUserDto? MyUser(int id)
         {
             User? user = _userRepository.GetAll()
@@ -137,15 +161,15 @@ namespace Service.Services
 
             return myUserDto;
         }
+
         public User? GetByAccId(int id)
         {
-            User user = _userRepository.GetAll()
+            User? user = _userRepository.GetAll()
                 .Where(x => x.AccountId == id)
                 .FirstOrDefault();
 
             return user;
         }
-
 
         public List<User?> GetProfiles(int id)
         {
@@ -153,6 +177,13 @@ namespace Service.Services
                 .Where(x => x.AccountId != id).ToList();
 
             return users;
+        }
+
+        public User Add(User user)
+        {
+            User? newUser = _userRepository.AddAndSaveChanges(user);
+
+            return newUser;
         }
     }
 }
