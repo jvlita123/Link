@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Data.Entities.Message>
-
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "";
 }
@@ -46,22 +46,31 @@
     </tbody>
 </table>
 
-@{
-    ViewData["Title"] = "SendMessage";
-}
-
 <h1>SendMessage</h1>
 
 <h4>Message</h4>
-<hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="SendMessage">
             <div class="form-group">
-                <input asp-for=@Model.FirstOrDefault().Text class="form-control" />
+                <label asp-for="@Model.FirstOrDefault().Text" class="control-label"></label>
+                <input asp-for="@Model.FirstOrDefault().Text" class="form-control" />
+                <span asp-validation-for="@Model.FirstOrDefault().Text" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" />
+                <input type="hidden" asp-for="@Model.FirstOrDefault().FirstUserId" class="form-control" />
+            </div>
+            <div class="form-group">
+                @if (Model.First().FirstUser.Account.Email == HttpContextAccessor.HttpContext.User.Identity.Name)
+                {
+                    <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" value="@Model.FirstOrDefault().SecondUserId" />
+                }
+                else
+                {
+                    <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" value="@Model.FirstOrDefault().FirstUserId" />
+
+                }
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
