@@ -11,5 +11,21 @@ namespace Data.Repositories
         {
             _dataContext = context;
         }
+<<<<<<< Updated upstream
+=======
+
+        public Relation GetByName(string name)
+        {
+            var result = _dataContext.Relations.Where(r => r.Name == name).FirstOrDefault();
+
+            return result;
+        }
+        public Relation GetName(int id)
+        {
+            var result = _dataContext.Relations.Where(r => r.Id == id).FirstOrDefault();
+
+            return result;
+        }
+>>>>>>> Stashed changes
     }
 }
