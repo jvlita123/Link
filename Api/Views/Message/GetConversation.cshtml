@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Data.Entities.Message>
-
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "";
 }
@@ -12,6 +12,7 @@
         </a>
     </div>
     
+    <div class="chat-wrapper">
     @foreach (var item in Model)
     {
         @if(Model.FirstOrDefault().FirstUser.Messages.Contains(item))
@@ -55,47 +56,32 @@
             </div>
         }
     }
+    </div>
 
+    <div class="textbox-wrapper">
+        <form asp-action="SendMessage">
+            <div class="form-group textbox-content">
+                <input asp-for="@Model.FirstOrDefault().Text" class="form-input chat-textbox-input" placeholder="Type a message..." />
+                <span asp-validation-for="@Model.FirstOrDefault().Text" class="text-danger"></span>
+
+                <button type="submit" class="button send-button">
+                    Send <i class="bi bi-send-fill"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="@Model.FirstOrDefault().FirstUserId" class="form-control" />
+            </div>
+            <div class="form-group">
+                @if (Model.First().FirstUser.Account.Email == HttpContextAccessor.HttpContext.User.Identity.Name)
+                {
+                    <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" value="@Model.FirstOrDefault().SecondUserId" />
+                }
+                else
+                {
+                    <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" value="@Model.FirstOrDefault().FirstUserId" />
+
+                }
+            </div>
+        </form>
+    </div>
 </div>
-
-@* <table class="table"> *@
-@*     <tbody> *@
-@* *@
-@*     @foreach (var item in Model) { *@
-@* *@
-@*             @if(Model.FirstOrDefault().FirstUser.Messages.Contains(item)) *@
-@*             { *@
-@*                 <tr style="color: mediumvioletred"> *@
-@*             <td>  *@
-@*                            *@
-@*                  @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0) *@
-@*                 { *@
-@*                             <img src="~/Photos/@Model.FirstOrDefault().SecondUser.Photos.FirstOrDefault().Path" height="50" width="50" /> *@
-@*                 } *@
-@*                     @Html.DisplayFor(modelItem => item.FirstUser.Name) *@
-@*             </td> *@
-@*             <td> *@
-@*                     @Html.DisplayFor(modelItem => item.Text) *@
-@*             </td> *@
-@*                 </tr> *@
-@*             } *@
-@* *@
-@*             @if (!(Model.FirstOrDefault().FirstUser.Messages.Contains(item))) *@
-@*             { *@
-@*                 <tr style="color: darkslategrey"> *@
-@*                     <td> *@
-@*                  @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0) *@
-@*                 { *@
-@*                             <img src="~/Photos/@Model.FirstOrDefault().FirstUser.Photos.FirstOrDefault().Path" height="50" width="50" /> *@
-@*                         } *@
-@*                         @Html.DisplayFor(modelItem => item.FirstUser.Name) *@
-@* *@
-@*                     </td> *@
-@*                     <td> *@
-@*                         @Html.DisplayFor(modelItem => item.Text) *@
-@*                     </td> *@
-@*                 </tr> *@
-@*             } *@
-@*       } *@
-@*     </tbody> *@
-@* </table> *@

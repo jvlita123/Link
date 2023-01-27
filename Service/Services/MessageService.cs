@@ -102,11 +102,10 @@ namespace Service.Services
 
             foreach (var message in messages)
             {
-                message.FirstUser = _userRepository.GetAll().Include(x => x.Photos).Where(x => x.Id == message.FirstUserId).FirstOrDefault();
-                message.SecondUser = _userRepository.GetAll().Include(x => x.Photos).Where(x => x.Id == message.SecondUserId).FirstOrDefault();
+                message.FirstUser = _userRepository.GetAll().Include(x => x.Photos).Include(x=>x.Blocks).Include(x=>x.Account).Where(x => x.Id == message.FirstUserId).FirstOrDefault();
+                message.SecondUser = _userRepository.GetAll().Include(x => x.Photos).Include(x=>x.Blocks).Include(x=>x.Account).Where(x => x.Id == message.SecondUserId).FirstOrDefault();
             }
             return messages;
         }
-
     }
 }

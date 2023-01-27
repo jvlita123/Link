@@ -1,8 +1,6 @@
-﻿using Data.Dto_s.User;
-using Data.Entities;
+﻿using Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Packaging;
 using Service.Services;
 
 namespace Api.Controllers
@@ -41,10 +39,9 @@ namespace Api.Controllers
         {
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
             User? user = _userService.GetByAccId(account.Id);
-
             _messageService.SendMessage(user.Id, secondUserId, text);
 
-            return View();
+            return RedirectToAction("GetConversation", new { id = secondUserId });
         }
 
         [HttpGet]
@@ -91,8 +88,8 @@ namespace Api.Controllers
             User user = _userService.GetByAccId(account.Id);
 
             List<Message> conversation = new List<Message>();
-            conversation = _messageService.GetConversation(user.Id,id);
-      
+            conversation = _messageService.GetConversation(user.Id, id);
+
             return View(conversation);
         }
     }

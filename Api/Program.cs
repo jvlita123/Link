@@ -72,6 +72,8 @@ namespace Api
 
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();
+            builder.Services.AddHttpContextAccessor();
+
 
             var app = builder.Build();
 
