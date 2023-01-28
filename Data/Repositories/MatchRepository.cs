@@ -14,11 +14,13 @@ namespace Data.Repositories
             _dataContext = context;
             _relationUserRepository = relationUserRepository;
         }
-        public User? GetValidPerson(int userId, int relID)
+        public int? GetValidPerson(int userId, int relID)
         {
-
+            var debug = _relationUserRepository.GetAllByRelationID(userId, relID).ToList();
+            var debug2 = GetAllMatchesForAUser(userId).ToList();
+           // var debug3 = GetAllMatchesForAUser(userId).Where(y => y.FirstUserId == x.UserId || y.SecondUserId == x.UserId).ToList();
             var result = _relationUserRepository.GetAllByRelationID(userId, relID).Where(x => !GetAllMatchesForAUser(userId).Where(y => y.FirstUserId == x.UserId || y.SecondUserId == x.UserId).Any()).FirstOrDefault();
-           if(result!=null)  return result.User;
+           if(result!=null)  return result.UserId;
             return null;
         }
 

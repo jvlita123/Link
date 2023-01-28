@@ -10,15 +10,15 @@ namespace Service.Services
     public class MatchService
     {
         private readonly MatchRepository _matchRepository;
-        private readonly UserService _userService;
+        private readonly UserRepository _userRepository;
         private readonly RelationService _relationService;
         private readonly RelationUserRepository _relationUserRepository;
 
 
-        public MatchService(MatchRepository matchRepository,UserService userService, RelationService relationService, RelationUserRepository relationUserRepository)
+        public MatchService(MatchRepository matchRepository,UserRepository userRepository, RelationService relationService, RelationUserRepository relationUserRepository)
         {
             _matchRepository = matchRepository;
-            _userService = userService;
+            _userRepository = userRepository;
             _relationService = relationService;
             _relationUserRepository = relationUserRepository;
 
@@ -44,31 +44,31 @@ namespace Service.Services
             if (result == null)
             {
                 Match createNew;   
-                User user = _userService.GetById(userId);
-                if (_matchRepository.GetValidPerson(userId, relID) == null) return null;
-                int idOfValidPerson = _matchRepository.GetValidPerson(userId,relID).Id;
-                User user2 = _matchRepository.GetValidPerson(userId,relID);
-                int matchID = GetAll().Count;
-                Relation relation = _relationService.GetById(relID);
-                Status status = new Status
-                {
-                Id = 5,
-                Name = "undefined"
-                };
+            //    User user = _userRepository.GetById(userId);
+              
+                int? idOfValidPerson = _matchRepository.GetValidPerson(userId,relID);
+                if (idOfValidPerson == null) return null;
+                //      User user2 = _userRepository.GetById((int)idOfValidPerson);
+                //      Relation relation = _relationService.GetById(relID);
+                //  Status status = new Status
+                //   {
+                //   Id = 5,
+                //    Name = "undefined"
+                //  };
                 createNew = new Match
                 {
-                    Id = matchID,
+                   
                     FirstUserId = userId,
-                    FirstUser = user,
-                    SecondUserId = idOfValidPerson,
-                    SecondUser = user2,
+                    //    FirstUser = user,
+                    SecondUserId = (int)idOfValidPerson,
+                    //     SecondUser = user2,
                     RelationId = relID,
-                    Relation = relation,
+                    //    Relation = relation,
                     StatusId = 5,
-                    Status = status,
-                    Date = DateTime.Now
+                    //    Status = status,
+                    Date = DateTime.Today
                 };
-                _matchRepository.Add(createNew);
+                _matchRepository.AddAndSaveChanges(createNew);
                 return createNew;
             }
             return result;
