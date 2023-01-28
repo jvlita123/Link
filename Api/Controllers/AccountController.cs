@@ -12,10 +12,12 @@ namespace Api.Controllers
     public class AccountController : Controller
     {
         private AccountService _accountService;
+        private UserService _userService;
 
-        public AccountController(AccountService accountService)
+        public AccountController(AccountService accountService, UserService userService)
         {
             _accountService = accountService;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -43,10 +45,11 @@ namespace Api.Controllers
             return View();
         }
 
-        //Register
         public IActionResult Register()
         {
-            return View();
+            UserRegisterViewModel userRegisterViewModel = new UserRegisterViewModel();
+
+            return View(userRegisterViewModel);
         }
 
         [HttpPost]
@@ -60,13 +63,28 @@ namespace Api.Controllers
                     Password = userRegisterViewModel.Password,
                 };
 
-                _accountService.Add(newAcc);
+                Account? account = _accountService.Add(newAcc);
+                var newUser = new User()
+                {
+                    Name = userRegisterViewModel.Name,
+                    Gender = userRegisterViewModel.Gender,
+                    IsPremium = false,
+                    LastLogin = DateTime.UtcNow,
+                    AccountId = account.Id,
+                    Localization = "Poland",
+                    IsBlock = false
+                };
+
+                _userService.Add(newUser);
+
                 ModelState.Clear();
+
+                return Redirect("/");
             }
+
             return View();
         }
 
-        //Login
         public IActionResult Login()
         {
             return View();
@@ -75,15 +93,17 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Login(Account acc)
         {
-            var user = _accountService.GetAll()
-            .FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
+            Account? user = _accountService.GetAll().FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
             if (user != null)
             {
-                // Session["Id"] = usr.Id.ToString();
-                // Session["Email"] = usr.Email.ToString();
+                int userId = _userService.GetUserIdByAccountId(user.Id);
+                string userName = _userService.GetUserNameByAccountId(user.Id);
+
                 var claims = new List<Claim>
                     {
+                        new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
                         new Claim(ClaimTypes.Name, user.Email),
+                        new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Role, "User"),
                     };
 
@@ -106,14 +126,6 @@ namespace Api.Controllers
 
         public IActionResult LoggedIn()
         {
-            /* if(Session["Id"] != null)
-             {
-                 return View();
-             }
-             else
-             {
-                 return RedirectToAction("Login");
-             }*/
             return View();
         }
 

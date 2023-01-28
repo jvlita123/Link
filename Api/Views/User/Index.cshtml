@@ -1,28 +1,92 @@
 ﻿@model Data.Dto_s.User.MyUserDto
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Your profile";
 }
 
-<h1>My profile</h1>
-<div>
+<div class="user-settings-content">
+    <div class="section-headline">
+        <span class="divider f-w"></span>
+        <div class="d-flex justify-between">
+            <h3 class="title">Public profile</h3>
+            <div class="d-flex align-items-center">
+                <a class="link">security</a>
+                <i class="bi bi-dot font-blue"></i>
+                <a class="link">more actions</a>
+                <i class="bi bi-dot font-blue"></i>
+                <a class="link">edit account</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <div class="image-wrapper">
+            <img class="image image-rounded" src="~/Photos/@Model.ProfilePhoto" />
+        </div>
+        <div class="detail-info-section">
+            <div class="info-col">
+                <p>Username</p>
+            </div>
+            <div class="data-col">
+                <p>@Html.DisplayFor(model => model.Name)</p>
+            </div>
+
+            <div class="info-col">
+                <p>Email</p>
+            </div>
+            <div class="data-col">
+                <p>dummy@example.com</p>
+            </div>
+
+            <!-- <div class="info-col">
+                <p>@Html.DisplayNameFor(model => model.Gender)</p>
+            </div>
+            <div class="data-col">
+                <p>@Html.DisplayFor(model => model.Gender)</p>
+            </div> -->
+
+            <div class="info-col">
+                <p>Description</p>
+            </div>
+            <div class="data-col">
+                <p>Your description goes here!</p>
+            </div>
+
+            <div class="info-col">
+                <p>Phone number</p>
+            </div>
+            <div class="data-col">
+                <p>+48 123 456 789</p>
+            </div>
+
+            <div class="info-col">
+                <p>Gender</p>
+            </div>
+            <div class="data-col">
+                <p>M</p>
+            </div>
+
+            <div class="info-col">
+                <p>Location</p>
+            </div>
+            <div class="data-col">
+                <p>Białystok, Podlaskie</p>
+            </div>
+
+            <div class="info-col">
+                <p>Height</p>
+            </div>
+            <div class="data-col">
+                <p>1'90</p>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<!-- <div>
     <table width="300px">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.ProfilePhoto)</th>
-            <td><img src="~/Photos/@Model.ProfilePhoto" height="70" width="70" /></td>
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <td>@Html.DisplayFor(model => model.Name)</td>
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Gender)</th>
-            <td>@Html.DisplayFor(model => model.Gender)</td>
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
-            <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
-        </tr>
+        
         <tr>
             <th>@Html.DisplayNameFor(model => model.IsPremium)</th>
             <td>@Html.DisplayFor(model => model.IsPremium)</td>
@@ -42,4 +106,4 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-</div>
+</div> -->

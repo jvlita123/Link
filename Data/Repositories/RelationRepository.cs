@@ -11,8 +11,6 @@ namespace Data.Repositories
         {
             _dataContext = context;
         }
-<<<<<<< Updated upstream
-=======
 
         public Relation GetByName(string name)
         {
@@ -26,6 +24,5 @@ namespace Data.Repositories
 
             return result;
         }
->>>>>>> Stashed changes
     }
 }

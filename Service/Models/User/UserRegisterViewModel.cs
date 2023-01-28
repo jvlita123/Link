@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Services.ViewModels.User
 {
     public class UserRegisterViewModel
     {
-        [Key]
-        public int UserId { get; set; }
         [Required(ErrorMessage = "Email is required.")]
         public string Email { get; set; }
 
@@ -22,5 +16,8 @@ namespace Service.Services.ViewModels.User
         [Compare("Password", ErrorMessage = "Please confirm your password.")]
         public string ConfirmPassword { get; set; }
 
+        public string Name { get; set; }
+
+        public bool Gender { get; set; }
     }
 }

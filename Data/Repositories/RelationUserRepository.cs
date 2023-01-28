@@ -28,5 +28,6 @@ namespace Data.Repositories
                 .Where(ru => ru.RelationId == relationID).Distinct();
             return result;
         }
+
     }
 }

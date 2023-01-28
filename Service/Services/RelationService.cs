@@ -12,8 +12,6 @@ namespace Service.Services
             _relationRepository = relationRepository;
         }
 
-<<<<<<< Updated upstream
-=======
         public Relation GetByName(string name)
         {
             Relation relation = _relationRepository.GetByName(name);
@@ -26,7 +24,6 @@ namespace Service.Services
 
             return relation;
         }
->>>>>>> Stashed changes
         public List<Relation> GetAll()
         {
             List<Relation> relations = _relationRepository.GetAll().ToList();
