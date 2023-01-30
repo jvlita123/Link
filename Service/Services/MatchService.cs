@@ -39,7 +39,7 @@ namespace Service.Services
         }
         public Match? GetNextMatchForLoggedUser(int userId,int relID)
         {
-           Match? result = _matchRepository.GetNextMatchForLoggedUser1(userId);
+            Match? result = _matchRepository.GetNextMatchForLoggedUser1(userId);
             if (result == null) result = _matchRepository.GetNextMatchForLoggedUser2(userId);
             if (result == null)
             {
@@ -75,8 +75,8 @@ namespace Service.Services
         }
         public MatchViewModel GetMatchViewModel (Match match, int userID)
         {
-            if (match.FirstUserId == userID) return new MatchViewModel(null, match.SecondUser);
-            return new MatchViewModel(null, match.FirstUser);
+            if (match.FirstUserId == userID) return new MatchViewModel(null, _userRepository.GetById(match.SecondUserId));
+            return new MatchViewModel(null, _userRepository.GetById(match.FirstUserId));
         }
         public Match Add(Match match)
         {
@@ -87,7 +87,7 @@ namespace Service.Services
 
         public void Update(Match match, bool swipe, int userID)
         {
-            if (swipe == false) match.StatusId = 4;
+            if (swipe == false) match.StatusId = 4; // 1 = matched, 2 = user1 matched // 3 = user2 matched // 4 = reject // 5 = just created
             else if (swipe && match.StatusId == 5 && userID == match.FirstUserId) match.StatusId = 2;
             else if (swipe && match.StatusId == 5 && userID == match.SecondUserId) match.StatusId = 3;
             else if (swipe && match.StatusId == 2 && userID == match.SecondUserId) match.StatusId = 1;

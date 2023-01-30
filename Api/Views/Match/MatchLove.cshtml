@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Service.Models.Match.MatchViewModel
+
 @{
+    ViewData["Title"] = "Love";
 }
+
+<h1>Love - @ViewBag.Message</h1>
+@if (@ViewBag.Message != "No Possible matches")
+{
+<table width="300px">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayFor(model => model.User2.Name)
+            </th>
+        </tr>
+    </thead>
+</table>
+<form asp-action="UpdateTrue" method="post">
+    <div class="btn btn-primary">
+        Match
+        <button type="submit" name="swipeR" value="Match" onclick="UpdateTrue"></button>
+    </div>
+</form>
+<form asp-action="UpdateFalse" method="post">
+    <div class="btn btn-primary">
+        Reject
+        <button type="submit" name="swipeR" value="Reject" onclick="UpdateFalse"></button>
+    </div>
+</form>
+} 

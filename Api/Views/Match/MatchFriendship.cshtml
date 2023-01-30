@@ -1,8 +1,31 @@
 ﻿@model Service.Models.Match.MatchViewModel
 
 @{
-    ViewData["Title"] = "Friendship";
+    ViewData["Title"] = "Love";
 }
 
 <h1>Friendship - @ViewBag.Message</h1>
-
+@if (@ViewBag.Message != "No Possible matches")
+{ 
+<table width="300px">
+    <thead>
+        <tr>
+            <th>
+                    @Html.DisplayFor(model => model.User2.Name)
+            </th>
+        </tr>
+    </thead>
+</table>
+<form asp-action="UpdateTrue" method="post">
+    <div class="btn btn-primary">
+        Match
+        <button type="submit" name="swipeR" value="Match" onclick="UpdateTrue"></button>
+    </div>
+</form>
+<form asp-action="UpdateFalse" method="post">
+    <div class="btn btn-primary">
+        Reject
+        <button type="submit" name="swipeR" value="Reject" onclick="UpdateFalse"></button>
+    </div>
+</form>
+} 
