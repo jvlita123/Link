@@ -42,30 +42,16 @@ namespace Service.Services
             Match? result = _matchRepository.GetNextMatchForLoggedUser1(userId);
             if (result == null) result = _matchRepository.GetNextMatchForLoggedUser2(userId);
             if (result == null)
-            {
-                Match createNew;   
-            //    User user = _userRepository.GetById(userId);
-              
+            { 
                 int? idOfValidPerson = _matchRepository.GetValidPerson(userId,relID);
                 if (idOfValidPerson == null) return null;
-                //      User user2 = _userRepository.GetById((int)idOfValidPerson);
-                //      Relation relation = _relationService.GetById(relID);
-                //  Status status = new Status
-                //   {
-                //   Id = 5,
-                //    Name = "undefined"
-                //  };
-                createNew = new Match
+                Match createNew = new Match
                 {
-                   
+
                     FirstUserId = userId,
-                    //    FirstUser = user,
                     SecondUserId = (int)idOfValidPerson,
-                    //     SecondUser = user2,
                     RelationId = relID,
-                    //    Relation = relation,
                     StatusId = 5,
-                    //    Status = status,
                     Date = DateTime.Today
                 };
                 _matchRepository.AddAndSaveChanges(createNew);
@@ -88,10 +74,10 @@ namespace Service.Services
         public void Update(Match match, bool swipe, int userID)
         {
             if (swipe == false) match.StatusId = 4; // 1 = matched, 2 = user1 matched // 3 = user2 matched // 4 = reject // 5 = just created
-            else if (swipe && match.StatusId == 5 && userID == match.FirstUserId) match.StatusId = 2;
-            else if (swipe && match.StatusId == 5 && userID == match.SecondUserId) match.StatusId = 3;
-            else if (swipe && match.StatusId == 2 && userID == match.SecondUserId) match.StatusId = 1;
-            else if (swipe && match.StatusId == 3 && userID == match.FirstUserId) match.StatusId = 1;
+            else if (match.StatusId == 5 && userID == match.FirstUserId) match.StatusId = 2;
+            else if (match.StatusId == 5 && userID == match.SecondUserId) match.StatusId = 3;
+            else if (match.StatusId == 2 && userID == match.SecondUserId) match.StatusId = 1;
+            else if (match.StatusId == 3 && userID == match.FirstUserId) match.StatusId = 1;
             _matchRepository.UpdateAndSaveChanges(match);
         }
     }

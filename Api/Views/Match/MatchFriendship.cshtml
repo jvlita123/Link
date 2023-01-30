@@ -16,13 +16,13 @@
         </tr>
     </thead>
 </table>
-<form asp-action="UpdateTrue" method="post">
+<form asp-action="Update" asp-route-decision=true method="post">
     <div class="btn btn-primary">
         Match
         <button type="submit" name="swipeR" value="Match" onclick="UpdateTrue"></button>
     </div>
 </form>
-<form asp-action="UpdateFalse" method="post">
+<form asp-action="Update" asp-route-decision=false method="post">
     <div class="btn btn-primary">
         Reject
         <button type="submit" name="swipeR" value="Reject" onclick="UpdateFalse"></button>

@@ -76,24 +76,15 @@ namespace Api.Controllers
 
         }
         [HttpPost]
-        public IActionResult UpdateTrue()
+        public IActionResult Update(bool Decision)
         {
             Match match = _matchService.Get((int)TempData["match"]);
             int user2ID = (int)TempData["user2ID"];
-            _matchService.Update((Match)match, true,(int)user2ID);
+           if(Decision)  _matchService.Update((Match)match, true,(int)user2ID);
+            else _matchService.Update((Match)match, false, (int)user2ID);
             if ((int)TempData["url"] == 1) return RedirectToAction("MatchLove");
             if ((int)TempData["url"] == 2) return RedirectToAction ("MatchFriendship");
           return RedirectToAction("MatchLooseWriting"); // page refresh
-        }
-        [HttpPost]
-        public IActionResult UpdateFalse()
-        {
-            Match match = _matchService.Get((int)TempData["match"]);
-            int user2ID = (int)TempData["user2ID"];
-            _matchService.Update((Match)match, false, (int)user2ID);
-        if ((int)TempData["url"] == 1) return RedirectToAction("MatchLove");
-        if ((int)TempData["url"] == 2) return RedirectToAction("MatchFriendship");
-        return RedirectToAction("MatchLooseWriting");
         }
     }
 }
