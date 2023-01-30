@@ -18,5 +18,11 @@ namespace Data.Repositories
 
             return result;
         }
+        public Relation GetName(int id)
+        {
+            var result = _dataContext.Relations.Where(r => r.Id == id).FirstOrDefault();
+
+            return result;
+        }
     }
 }

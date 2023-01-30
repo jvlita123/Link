@@ -17,9 +17,17 @@ namespace Data.Repositories
         {
             var result = _dataContext.RelationUsers.Include(ru => ru.Relation)
                 .Where(ru => ru.UserId == userId)
-                .Where(ru => ru.Preference.Type == relationType);
+                .Where(ru => ru.Preference.Type == relationType).Distinct();
 
             return result;
         }
+        public IQueryable<RelationUser> GetAllByRelationID(int userId,int relationID)
+        {
+            var result = _dataContext.RelationUsers.Include(ru => ru.Relation)
+                .Where(ru => ru.UserId != userId)
+                .Where(ru => ru.RelationId == relationID).Distinct();
+            return result;
+        }
+
     }
 }
