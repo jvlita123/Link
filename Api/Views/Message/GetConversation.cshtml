@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Data.Entities.Message>
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "";
+}
+
+<div class="list-container message-list wide">
+    <div class="message-row section-title">
+        <h2>Conversation with <span>@Model.FirstOrDefault().FirstUser.Name</span></h2>
+        <a href="/userconversations">
+            Back to list
+        </a>
+    </div>
+    
+    <div class="chat-wrapper">
+    @foreach (var item in Model)
+    {
+        @if(Model.FirstOrDefault().FirstUser.Messages.Contains(item))
+        {
+            <div class="message-item right">
+                <div class="message-wrapper">
+                    <p class="username">
+                        @Html.DisplayFor(modelItem => item.FirstUser.Name)
+                    </p>
+                    
+                    <p class="message-text">
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </p>
+                </div>
+                @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0)
+                {
+                    <div class="message-user-image">
+                        <img src="~/Photos/@Model.FirstOrDefault().SecondUser.Photos.FirstOrDefault().Path" height="50" width="50"/>
+                    </div>
+                }
+            </div>
+        }
+        
+        @if (!(Model.FirstOrDefault().FirstUser.Messages.Contains(item)))
+        {
+            <div class="message-item left">
+                @if (Model.FirstOrDefault().FirstUser.Photos.Count > 0)
+                {
+                    <div class="message-user-image">
+                        <img src="~/Photos/@Model.FirstOrDefault().FirstUser.Photos.FirstOrDefault().Path" height="50" width="50"/>
+                    </div>
+                }
+                <div class="message-wrapper">
+                    <p class="username">
+                        @Html.DisplayFor(modelItem => item.FirstUser.Name)
+                    </p>
+                    <p class="message-text">
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    </div>
+
+    <div class="textbox-wrapper">
+        <form asp-action="SendMessage">
+            <div class="form-group textbox-content">
+                <input asp-for="@Model.FirstOrDefault().Text" class="form-input chat-textbox-input" placeholder="Type a message..." />
+                <span asp-validation-for="@Model.FirstOrDefault().Text" class="text-danger"></span>
+
+                <button type="submit" class="button send-button">
+                    Send <i class="bi bi-send-fill"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="@Model.FirstOrDefault().FirstUserId" class="form-control" />
+            </div>
+            <div class="form-group">
+                @if (Model.First().FirstUser.Account.Email == HttpContextAccessor.HttpContext.User.Identity.Name)
+                {
+                    <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" value="@Model.FirstOrDefault().SecondUserId" />
+                }
+                else
+                {
+                    <input type="hidden" asp-for="@Model.FirstOrDefault().SecondUserId" class="form-control" value="@Model.FirstOrDefault().FirstUserId" />
+
+                }
+            </div>
+        </form>
+    </div>
+</div>

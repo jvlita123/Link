@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Data.Entities.Message>
+
+@{
+    ViewData["Title"] = "GetSentMessages";
+}
+
+<h1>GetSentMessages</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReactionId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReactionId)
+            </td>
+            <td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
