@@ -156,6 +156,7 @@ body #root nav .nav-auth .dropdown-toggle.button .image {
   padding: 2px;
 }
 body #root nav .nav-auth .dropdown-content {
+  z-index: 1000;
   position: absolute;
   right: 15px;
   top: 50px;

@@ -10,7 +10,7 @@
 {
     <div class="regular nav-links">
         <ul>
-            <a href="/" class="nav-link">
+            <a href="/account/loggedin" class="nav-link">
             <li class="nav-item">Home</li></a>
             <a href="/relation/love" class="nav-link">
             <li class="nav-item">Love</li></a>
@@ -24,7 +24,7 @@
         <button class="dropdown-toggle button">
             <img id="dropdown-toggle" class="image image-rounded" src="~/Photos/@Model.ProfilePhoto" />
         </button>
-        <div class="dropdown-content" id="main-dropdown-content">
+        <div class="dropdown-content hidden" id="main-dropdown-content">
             <div class="dropdown-header">
                 <h2>Signed in as <span>@Model.Name</span></h2>
             </div>

@@ -215,6 +215,7 @@ body {
                 }
                 
                 .dropdown-content {
+                    z-index: 1000;
                     position: absolute;
                     right: 15px;
                     top: 50px;
