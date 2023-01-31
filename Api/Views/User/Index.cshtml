@@ -33,13 +33,15 @@
             <div class="data-col">
                 <p>@Html.DisplayFor(model => model.Name)</p>
             </div>
-            }
-             <div class="info-col">
-                <p>Username</p>
+            } else {
+            <div class="info-col">
+            <p>Username</p>
             </div>
             <div class="gold-col">
                 <p class="gold-text">@Html.DisplayFor(model => model.Name)</p>
             </div>
+            }
+             
             <div class="info-col">
                 <p>Email</p>
             </div>
