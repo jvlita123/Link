@@ -15,6 +15,7 @@
  */
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 html {
   margin: 0;
   padding: 0;
@@ -144,6 +145,78 @@ body #root nav {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
+}
+body #root nav .nav-auth {
+  position: relative;
+}
+body #root nav .nav-auth .dropdown-toggle.button .image {
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+}
+body #root nav .nav-auth .dropdown-content {
+  position: absolute;
+  right: 15px;
+  top: 50px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  padding: 10px 0;
+  border: 2px solid rgba(17, 17, 17, 0.2);
+  border-radius: 12px;
+  min-width: 240px;
+  transition: 0.2s ease-in-out;
+}
+body #root nav .nav-auth .dropdown-content.hidden {
+  display: none;
+}
+body #root nav .nav-auth .dropdown-content .dropdown-header h2 {
+  font-size: 1em;
+  font-weight: 400;
+  padding: 0 12px 10px 12px;
+}
+body #root nav .nav-auth .dropdown-content .dropdown-header h2 span {
+  font-weight: 800;
+}
+body #root nav .nav-auth .dropdown-content .dropdown-header::after {
+  content: "";
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(17, 17, 17, 0.1);
+  margin: 0;
+}
+body #root nav .nav-auth .dropdown-content ul {
+  margin: 0;
+  margin-top: 8px;
+  padding: 0;
+  list-style-type: none;
+}
+body #root nav .nav-auth .dropdown-content ul li {
+  padding: 8px 14px;
+  margin: 10px 0;
+}
+body #root nav .nav-auth .dropdown-content ul li a {
+  color: rgba(17, 17, 17, 0.6705882353);
+  transition: 0.2s ease-in-out;
+}
+body #root nav .nav-auth .dropdown-content ul li:hover {
+  background-color: #eee;
+}
+body #root nav .nav-auth .dropdown-content ul li:hover a {
+  color: #3C4048;
+  text-decoration: none;
+}
+body #root nav .nav-auth .dropdown-content ul li.danger {
+  background-color: #be0000;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 12px;
+}
+body #root nav .nav-auth .dropdown-content ul li.danger a {
+  color: #EEEEEE;
+  font-weight: 600;
 }
 body #root nav .menu-toggle {
   display: none;
@@ -324,6 +397,13 @@ body #root .content .user-settings-content .detail-info-section .info-col {
 body #root .content .user-settings-content .detail-info-section .data-col {
   padding: 8px 0;
 }
+body #root .content .user-settings-content .detail-info-section .gold-col {
+  padding: 8px 0;
+}
+body #root .content .user-settings-content .detail-info-section .premium-col {
+  display: flex;
+  flex-direction: row;
+}
 body #root .content .options-section .image-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -389,21 +469,3 @@ body #root #footer {
   text-align: center;
   padding-bottom: 45px;
 }/*# sourceMappingURL=main.css.map */
-
-.gold-text{
-  font-family: "Alegreya", serif;
-  font-style: italic;
-  font-size: 2rem;
-  word-spacing: 0.2em;
-  display: inline-block;
-  padding: 0;
-  line-height: 1;
-  white-space: nowrap;
-  color: transparent;
-  background-color: #E8A95B;
-  background-image: radial-gradient(ellipse farthest-corner at right bottom, white 0%, #F0BB7A 20%, #E8A95B 60%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, white 0%, #F0BB7A 50%, #DE9945 75%, #E8A95B 100%);
-  background-size: 100% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  margin: 0 0 0.5rem 0;
-}

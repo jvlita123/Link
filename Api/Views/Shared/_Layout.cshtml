@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/styles/main/main.css">
     <link rel="stylesheet" href="~/styles/messages/messages.css">
     <script defer src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script defer src="~/lib/main.js"></script>
 </head>
 <body>
     <div id="root">
@@ -26,5 +27,6 @@
             </p>
         </div>
     </div>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

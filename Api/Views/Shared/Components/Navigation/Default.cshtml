@@ -21,9 +21,23 @@
         </ul>
     </div>
     <div class="regular nav-auth">
-        <img class="image image-rounded" style=" width: 30px; height: 30px;" src="~/Photos/@Model.ProfilePhoto" />
-        <h1>@Model.Email</h1>
-        <a asp-area="" asp-controller="Account" asp-action="Logout" class="button primary">Logout</a>
+        <button class="dropdown-toggle button">
+            <img id="dropdown-toggle" class="image image-rounded" src="~/Photos/@Model.ProfilePhoto" />
+        </button>
+        <div class="dropdown-content" id="main-dropdown-content">
+            <div class="dropdown-header">
+                <h2>Signed in as <span>@Model.Name</span></h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/userconversations">Messages</a>
+                </li>
+                <span class="divider"></span>
+                <li class="w-100 danger">
+                    <a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
 }
 else
