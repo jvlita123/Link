@@ -69,6 +69,7 @@ namespace Api
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<BlockService>();
             builder.Services.AddScoped<BlockRepository>();
+            builder.Services.AddScoped<PremiumService>();
 
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();

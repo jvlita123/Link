@@ -1,7 +1,9 @@
-﻿@model Data.Dto_s.User.MyUserDto
+﻿@model Data.Dto_s.User.MyUserDto;
+
 
 @{
     ViewData["Title"] = "Your profile";
+    bool visible = Model.IsPremium;
 }
 
 <div class="user-settings-content">
@@ -24,13 +26,20 @@
             <img class="image image-rounded" src="~/Photos/@Model.ProfilePhoto" />
         </div>
         <div class="detail-info-section">
-            <div class="info-col">
+            @if(!visible){
+                <div class="info-col">
                 <p>Username</p>
             </div>
             <div class="data-col">
                 <p>@Html.DisplayFor(model => model.Name)</p>
             </div>
-
+            }
+             <div class="info-col">
+                <p>Username</p>
+            </div>
+            <div class="gold-col">
+                <p class="gold-text">@Html.DisplayFor(model => model.Name)</p>
+            </div>
             <div class="info-col">
                 <p>Email</p>
             </div>
@@ -79,7 +88,22 @@
             <div class="data-col">
                 <p>1'90</p>
             </div>
-
+            <div class="info-col">
+                <p>@Html.DisplayNameFor(model => model.IsPremium)</p>
+            </div>
+            <div class="data-col">
+                <p>@Html.DisplayFor(model => model.IsPremium)</p>
+            </div>
+            @if(!visible){
+            <div class="info-col">
+                <p>Buy premium</p>
+            </div>
+            <div class="premium-col" style="display:flex; flex-direction: row;">
+                <a href='@Url.Action("Index", "premium")'>
+                <button type="button" class="button primary">PREMIUM</button>
+                </a>
+            </div>
+            }
         </div>
     </section>
 </div>
