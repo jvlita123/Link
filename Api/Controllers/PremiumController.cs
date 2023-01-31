@@ -24,7 +24,6 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Premium(){
             int userId = int.Parse(HttpContext.User.Claims.Where(c => c.Type.Contains("nameidentifier")).FirstOrDefault().Value);
-            System.Diagnostics.Debug.WriteLine("USERID!!!!!"+userId);
             _premiumService.SetPremium(userId);
             return Redirect("/user");
         }
