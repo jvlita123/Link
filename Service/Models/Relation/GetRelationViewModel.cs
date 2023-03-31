@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Data.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Service.Models.Relation
 {
@@ -10,6 +11,7 @@ namespace Service.Models.Relation
         public List<SelectListItem>? MinHeightsPreference { get; set; }
         public List<SelectListItem>? MaxHeightsPreference { get; set; }
         public List<SelectListItem>? LocalizationsPreference { get; set; }
+        public List <User> users = new List<User>();
 
         public int GenderId { get; set; }
         public int MinHeightId { get; set; }

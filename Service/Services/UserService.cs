@@ -76,6 +76,8 @@ namespace Service.Services
                 Id = user.Id,
                 Name = user.Name,
                 Gender = user.Gender,
+                Height = user.Height,
+                Localization = user.Localization,
                 PhoneNumber = user.PhoneNumber,
                 ProfilePhoto = user.Photos.Where(p => p.IsProfilePicture).Select(p => p.Path).FirstOrDefault(),
                 Photos = user.Photos.Where(p => !p.IsProfilePicture).Select(p => p.Path).ToList(),

@@ -6,54 +6,84 @@
 
 <h1>GetProfiles</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProfilePhoto)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProfilePhoto)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
+<form onsubmit="event.preventDefault(); filterUsersByPreferences()">
+    <label for="gender">Gender:</label>
+    <select name="gender">
+        <option value="any" selected>Any</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+
+    </select>
+    <br>
+
+    <label for="heightMin">Height minimum(cm):</label>
+    <input type="number" name="heightMin" id="heightMin">
+    <br>
+    <label for="heightMax">Height maximum(cm):</label>
+    <input type="number" name="heightMax" id="heightMax">
+    <br>
+
+    <label for="location">Location:</label>
+    <select name="location">
+        <option value="any" selected>Any</option>
+        <option value="Poland">Poland</option>
+        <option value="UK">UK</option>
+        <option value="Germany">Germany</option>
+        <option value="France">France</option>
+    </select>
+    <br>
+
+    <button type="submit">Search</button>
+</form>
+
+<div id="results-container"></div>
+
+<script>
+    // serializacja listy użytkowników do JSON
+
+    function filterUsersByPreferences() {
+        // pobierz wartości pól formularza
+        const gender = document.querySelector('select[name="gender"]').value;
+        const heightMin = parseInt(document.querySelector('input[name="heightMin"]').value);
+        const heightMax = parseInt(document.querySelector('input[name="heightMax"]').value);
+        const location = document.querySelector('select[name="location"]').value;
+        const users = JSON.parse('@Html.Raw(ViewBag.UsersJson)');
+
+
+        // filtrowanie użytkowników według preferencji
+        const filteredUsers = users.filter(user => {
+            if (gender !== 'any' && user.Gender !== gender) {
+                return false;
+            }
+            if (heightMin && user.Height <= heightMin) {
+                return false;
+            }
+            if (heightMax && user.Height >= heightMax) {
+                return false;
+            }
+            if (location !== 'any' && user.Localization !== location) {
+                return false;
+            }
+            return true;
+        });
+
+        // wyświetlenie wyników
+        const resultsContainer = document.getElementById('results-container');
+        resultsContainer.innerHTML = '';
+
+        if (filteredUsers.length > 0) {
+            const list = document.createElement('ul');
+            filteredUsers.forEach(user => {
+                const item = document.createElement('li');
+                item.textContent = `${user.Name} (${user.Gender}, ${user.Height} cm, ${user.Localization})`;
+                list.appendChild(item);
+            });
+            resultsContainer.appendChild(list);
+        } else {
+            const message = document.createElement('p');
+            message.textContent = 'No users match your preferences';
+            resultsContainer.appendChild(message);
+        }
+    }
+</script>
 </table>

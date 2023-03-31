@@ -16,7 +16,7 @@ namespace Data.Entities
 
         [Required]
         [Column("usr_gender")]
-        public bool Gender { get; set; }
+        public string Gender { get; set; }
 
         [Column("usr_phoneNumber")]
         public string? PhoneNumber { get; set; }

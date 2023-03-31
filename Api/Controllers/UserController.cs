@@ -3,6 +3,7 @@ using Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
+using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
@@ -45,7 +46,7 @@ namespace Api.Controllers
             return View(user);
         }
         */
-
+        
         public IActionResult GetAll()
         {
             List<User> users = _userService.GetAll();
@@ -57,9 +58,11 @@ namespace Api.Controllers
                 usersDto.Add(user);
 
             }
+
+            
             return View(usersDto);
         }
-
+        [Route("/profiles")]
         public IActionResult GetProfiles()
         {
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
@@ -72,6 +75,9 @@ namespace Api.Controllers
                 GetUserDto? userDto = _userService.Get(user.AccountId);
                 usersDto.Add(userDto);
             }
+
+            var usersJson = JsonConvert.SerializeObject(usersDto);
+            ViewBag.UsersJson = usersJson;
 
             return View(usersDto);
         }
