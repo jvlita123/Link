@@ -63,7 +63,7 @@ namespace Service.Services
         {
             User? user = _userRepository.GetAll()
                 .Include(x => x.Photos)
-                .Where(x => x.AccountId == id)
+                .Where(x => x.Id == id)
                 .FirstOrDefault();
 
             if (user == null)

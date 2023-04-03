@@ -37,15 +37,18 @@ namespace Api.Controllers
                 return View(myUser);
             }
         */
-        /*
-        [Route("User/{name}")]
-        public IActionResult Get(string name)
+        
+        public IActionResult Get(int id)
         {
-            GetUserDto? user = _userService.Get(name);
+            GetUserDto? user = _userService.Get(id);
+            if(user == null)
+            {
+                return NotFound();
+            }
 
             return View(user);
         }
-        */
+        
         
         public IActionResult GetAll()
         {
@@ -54,7 +57,7 @@ namespace Api.Controllers
 
             foreach (var v in users)
             {
-                GetUserDto? user = _userService.Get(v.AccountId);
+                GetUserDto? user = _userService.Get(v.Id);
                 usersDto.Add(user);
 
             }
@@ -72,7 +75,7 @@ namespace Api.Controllers
 
             foreach (var user in users)
             {
-                GetUserDto? userDto = _userService.Get(user.AccountId);
+                GetUserDto? userDto = _userService.Get(user.Id);
                 usersDto.Add(userDto);
             }
 

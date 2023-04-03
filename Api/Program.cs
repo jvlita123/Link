@@ -3,6 +3,7 @@ using Data.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Service.Services;
+using System.Web.Mvc;
 
 namespace Api
 {
@@ -99,6 +100,8 @@ namespace Api
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute(name: "user",
+                pattern: "{controller=User}/{action=Get}/{id?}");
 
             app.UseHttpsRedirection();
 

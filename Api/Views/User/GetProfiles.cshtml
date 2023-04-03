@@ -48,6 +48,7 @@
         const heightMax = parseInt(document.querySelector('input[name="heightMax"]').value);
         const location = document.querySelector('select[name="location"]').value;
         const users = JSON.parse('@Html.Raw(ViewBag.UsersJson)');
+        
 
 
         // filtrowanie użytkowników według preferencji
@@ -74,7 +75,9 @@
         if (filteredUsers.length > 0) {
             const list = document.createElement('ul');
             filteredUsers.forEach(user => {
-                const item = document.createElement('li');
+                const item = document.createElement('a');
+                const link = `${user.Id}`;
+                item.setAttribute('href', '/User/Get/'+link)
                 item.textContent = `${user.Name} (${user.Gender}, ${user.Height} cm, ${user.Localization})`;
                 list.appendChild(item);
             });
