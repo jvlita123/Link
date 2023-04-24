@@ -17,5 +17,7 @@ namespace Service.Models.Relation
         public int MinHeightId { get; set; }
         public int MaxHeightId { get; set; }
         public int LocalizationId { get; set; }
+        public int RelId { get; set; }
+        public bool IsRelation { get; set; }
     }
 }

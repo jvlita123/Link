@@ -17,7 +17,7 @@ namespace Data.Repositories
         {
             var result = _dataContext.RelationUsers.Include(ru => ru.Relation)
                 .Where(ru => ru.UserId == userId)
-                .Where(ru => ru.Preference.Type == relationType).Distinct();
+               .Distinct();
 
             return result;
         }

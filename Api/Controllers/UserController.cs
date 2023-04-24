@@ -65,11 +65,17 @@ namespace Api.Controllers
             
             return View(usersDto);
         }
-        [Route("/profiles")]
-        public IActionResult GetProfiles()
+
+        [HttpGet]
+        [Route("~/User/GetProfiles/{id}")]
+        public IActionResult GetProfiles(string id)
         {
+            
             Account account = _accountService.GetByEmail(HttpContext.User.Identity.Name);
-            List<User?> users = _userService.GetProfiles(account.Id);
+
+            int relID = Int32.Parse(id);
+            List<User?> users = _userService.GetProfiles(account.Id, relID); //lista userów należacych do danej relacji
+            
 
             List<GetUserDto> usersDto = new List<GetUserDto>();
 
