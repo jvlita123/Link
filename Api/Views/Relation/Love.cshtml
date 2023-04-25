@@ -24,16 +24,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-  var form = document.querySelector('form'); // zlokalizuj formularz na stronie
-  form.addEventListener('submit', function(event) { // nasłuchuj na zdarzenia wysyłki formularza
-    event.preventDefault(); // zapobiegaj domyślnej akcji (wysłaniu formularza)
-            window.location.href = "https://localhost:7014/User/GetProfiles/@Model.RelId"; // przekieruj użytkownika na inną stronę
-  });
-});
 
-</script>
+
 
 @section Scripts {
     @{
