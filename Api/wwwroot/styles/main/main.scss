@@ -431,7 +431,53 @@ body {
         .content {
 
             #results-container {
-                margin-top: 30px;
+                margin-top: 50px;
+
+                .results-list {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 30px;
+
+                    .result {
+                        background-color: #fff;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        padding: 20px 8px;
+                        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                        border: 2px solid rgba(17, 17, 17, 0.2);
+                        border-radius: 12px;
+                        transition: .2s ease-in-out;
+
+                        &:hover {
+                            text-decoration: none;
+                            background-color: #f6f6f6f7;
+                            transform: scale(1.04);
+                        }
+
+                        .image {
+                            img {
+                                width: 100px;
+                                height: 100px;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .description {
+                            p {
+                                text-align: center;
+                                color: #111;
+                                margin-top: 9px;
+
+                                &.username {
+                                    text-transform: uppercase;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             .form-wrapper {

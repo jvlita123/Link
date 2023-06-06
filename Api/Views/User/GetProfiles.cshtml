@@ -92,11 +92,24 @@
 
         if (filteredUsers.length > 0) {
             const list = document.createElement('ul');
+            list.classList.add('results-list');
             filteredUsers.forEach(user => {
                 const item = document.createElement('a');
+                item.classList.add('result');
                 const link = `${user.Id}`;
                 item.setAttribute('href', '/User/Get/'+link)
-                item.textContent = `${user.Name} (${user.Gender}, ${user.Height} cm, ${user.Localization})`;
+                const userCard = `
+                    <div class="image">
+                        <img src="/Photos/${user.ProfilePhoto}" />
+                    </div>
+                    <div class="description">
+                        <p class="username">${user.Name}</p>
+                        <p class="gender">${user.Gender}</p>
+                        <p class="localization">${user.Localization}</p>
+<!--                        <p>${user.Height} cm</p>-->
+                    </div>
+                `;
+                item.innerHTML = userCard;
                 list.appendChild(item);
             });
             resultsContainer.appendChild(list);

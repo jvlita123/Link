@@ -320,7 +320,44 @@ body #root nav .nav-auth {
   }
 }
 body #root .content #results-container {
-  margin-top: 30px;
+  margin-top: 50px;
+}
+body #root .content #results-container .results-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+body #root .content #results-container .results-list .result {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 2px solid rgba(17, 17, 17, 0.2);
+  border-radius: 12px;
+  transition: 0.2s ease-in-out;
+}
+body #root .content #results-container .results-list .result:hover {
+  text-decoration: none;
+  background-color: rgba(246, 246, 246, 0.968627451);
+  transform: scale(1.04);
+}
+body #root .content #results-container .results-list .result .image img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body #root .content #results-container .results-list .result .description p {
+  text-align: center;
+  color: #111;
+  margin-top: 9px;
+}
+body #root .content #results-container .results-list .result .description p.username {
+  text-transform: uppercase;
+  font-weight: 600;
 }
 body #root .content .form-wrapper {
   margin-top: 40px;
