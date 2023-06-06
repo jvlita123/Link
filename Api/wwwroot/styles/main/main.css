@@ -132,6 +132,17 @@ body .section-headline .title {
   font-weight: 500;
   text-transform: uppercase;
 }
+body .section-headline .action-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .section-headline .action-title .title {
+  padding: 8px 0;
+  color: rgba(113, 113, 113, 0.9);
+  font-weight: 500;
+  text-transform: uppercase;
+}
 body #root {
   max-width: 1200px;
   width: 100%;
@@ -308,6 +319,46 @@ body #root nav .nav-auth {
     background-color: #404258;
   }
 }
+body #root .content #results-container {
+  margin-top: 50px;
+}
+body #root .content #results-container .results-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+body #root .content #results-container .results-list .result {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 2px solid rgba(17, 17, 17, 0.2);
+  border-radius: 12px;
+  transition: 0.2s ease-in-out;
+}
+body #root .content #results-container .results-list .result:hover {
+  text-decoration: none;
+  background-color: rgba(246, 246, 246, 0.968627451);
+  transform: scale(1.04);
+}
+body #root .content #results-container .results-list .result .image img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body #root .content #results-container .results-list .result .description p {
+  text-align: center;
+  color: #111;
+  margin-top: 9px;
+}
+body #root .content #results-container .results-list .result .description p.username {
+  text-transform: uppercase;
+  font-weight: 600;
+}
 body #root .content .form-wrapper {
   margin-top: 40px;
   display: flex;
@@ -367,9 +418,6 @@ body #root .content .form-wrapper .form-content form .form-group input.form-inpu
 body #root .content .form-wrapper .form-content form .form-group input.form-input::-moz-placeholder {
   color: rgba(17, 17, 17, 0.3882352941);
 }
-body #root .content .form-wrapper .form-content form .form-group input.form-input:-ms-input-placeholder {
-  color: rgba(17, 17, 17, 0.3882352941);
-}
 body #root .content .form-wrapper .form-content form .form-group input.form-input::placeholder {
   color: rgba(17, 17, 17, 0.3882352941);
 }
@@ -379,6 +427,61 @@ body #root .content .form-wrapper .form-content form .button-wrapper {
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
+}
+body #root .content .warning-message {
+  background-color: #fff3cd;
+  color: #664d03;
+  padding: 18px 10px;
+  border: 2px solid #ffe69c;
+  border-radius: 8px;
+}
+body #root .content .form-horizontal {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+body #root .content .form-horizontal .input-wrapper {
+  display: flex;
+  gap: 20px;
+}
+body #root .content .form-horizontal .button {
+  display: flex;
+  height: 100%;
+  margin-top: 30px;
+}
+body #root .content .form-horizontal .form-input {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+}
+body #root .content .form-horizontal .form-input label {
+  margin-left: 5px;
+}
+body #root .content .form-horizontal .form-input input, body #root .content .form-horizontal .form-input select {
+  min-width: 170px;
+  border: 2px solid rgba(17, 17, 17, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+}
+body #root .content .form-horizontal .form-input input:focus, body #root .content .form-horizontal .form-input select:focus {
+  border: 2px solid #0d6efd;
+  outline: none;
+}
+body #root .content .form-horizontal .form-input input::-moz-placeholder, body #root .content .form-horizontal .form-input select::-moz-placeholder {
+  color: rgba(17, 17, 17, 0.3882352941);
+}
+body #root .content .form-horizontal .form-input input::placeholder, body #root .content .form-horizontal .form-input select::placeholder {
+  color: rgba(17, 17, 17, 0.3882352941);
+}
+body #root .content .form-horizontal .form-input select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 body #root .content .user-settings-content .detail-info-section {
   display: grid;
