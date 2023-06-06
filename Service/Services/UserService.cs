@@ -8,10 +8,12 @@ namespace Service.Services
     public class UserService
     {
         private readonly UserRepository _userRepository;
+        private readonly RelationUserRepository _relationUserRepository;
 
-        public UserService(UserRepository userRepository)
+        public UserService(UserRepository userRepository, RelationUserRepository relationUserRepository)
         {
             _userRepository = userRepository;
+            _relationUserRepository = relationUserRepository;
         }
 
         public List<User> GetAll()
@@ -63,7 +65,7 @@ namespace Service.Services
         {
             User? user = _userRepository.GetAll()
                 .Include(x => x.Photos)
-                .Where(x => x.AccountId == id)
+                .Where(x => x.Id == id)
                 .FirstOrDefault();
 
             if (user == null)
@@ -76,6 +78,8 @@ namespace Service.Services
                 Id = user.Id,
                 Name = user.Name,
                 Gender = user.Gender,
+                Height = user.Height,
+                Localization = user.Localization,
                 PhoneNumber = user.PhoneNumber,
                 ProfilePhoto = user.Photos.Where(p => p.IsProfilePicture).Select(p => p.Path).FirstOrDefault(),
                 Photos = user.Photos.Where(p => !p.IsProfilePicture).Select(p => p.Path).ToList(),
@@ -171,12 +175,29 @@ namespace Service.Services
             return user;
         }
 
-        public List<User?> GetProfiles(int id)
+        public List<User?> GetProfiles(int id, int relID)
         {
             List<User> users = _userRepository.GetAll()
-                .Where(x => x.AccountId != id).ToList();
+                .Where(x => x.AccountId != id).ToList(); //lista wszystkich userów bez usera który przegląda
 
-            return users;
+            List<RelationUser> relationUsers = _relationUserRepository.GetAll()
+                .Where(ur => ur.RelationId == relID)
+                .ToList(); //lista userów należących do danej relacji
+
+            List<User> userList = new List<User>();
+            
+            foreach (var user in users)
+            {
+                foreach (var relationUser in relationUsers)
+                {
+                    if(user.Id == relationUser.UserId) { 
+                        userList.Add(user); 
+                    }
+                }
+            }
+
+
+            return userList;
         }
 
         public User Add(User user)

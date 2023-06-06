@@ -18,6 +18,6 @@ namespace Service.Services.ViewModels.User
 
         public string Name { get; set; }
 
-        public bool Gender { get; set; }
+        public string Gender { get; set; }
     }
 }

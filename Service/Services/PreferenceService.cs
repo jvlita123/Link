@@ -54,30 +54,7 @@ namespace Service.Services
                 .Where(ur => ur.RelationId == relId)
                 .Any();
 
-            if (relationViewModel.IsEdit)
-            {
-                string genderPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "Gender")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-                string minHeightPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "MinHeight")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-                string maxHeightPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "MaxHeight")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-                string localizationPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "Localization")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-
-                relationViewModel.GendersPreference.Find(gp => gp.Value == genderPreferenceId).Selected = true;
-                relationViewModel.MinHeightsPreference.Find(gp => gp.Value == minHeightPreferenceId).Selected = true;
-                relationViewModel.MaxHeightsPreference.Find(gp => gp.Value == maxHeightPreferenceId).Selected = true;
-                relationViewModel.LocalizationsPreference.Find(gp => gp.Value == localizationPreferenceId).Selected = true;
-            }
+            
 
             return relationViewModel;
         }

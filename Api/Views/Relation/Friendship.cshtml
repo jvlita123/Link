@@ -4,53 +4,21 @@
     ViewData["Title"] = "Friendship";
 }
 
-<h1>Friendship - @ViewBag.Message</h1>
+<h1>Friendship</h1>
 
+
+<hr />
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Friendship">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <table width="300px">
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.GendersPreference)</th>
-                    <td>
-                        <select asp-for="GenderId" asp-items="@Model.GendersPreference"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.MinHeightsPreference)</th>
-                    <td>
-                        <select asp-for="MinHeightId" asp-items="@Model.MinHeightsPreference"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.MaxHeightsPreference)</th>
-                    <td>
-                        <select asp-for="MaxHeightId" asp-items="@Model.MaxHeightsPreference"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.LocalizationsPreference)</th>
-                    <td>
-                        <select asp-for="LocalizationId" asp-items="@Model.LocalizationsPreference"></select>
-                    </td>
-                </tr>
-            </table>
-            @if (Model.IsEdit)
-            {
-                //@(Model.IsEdit = true);
-                <div class="form-group">
-                    <input type="submit" value="Edit" class="btn btn-success" />
-                </div>
-            }
-            else
-            {
-                //@(Model.IsEdit = false);
-                <div class="form-group">
-                    <input type="submit" value="Add" class="btn btn-primary" />
-                </div>
-            }
+
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" id="przycisk"/>
+                
+            </div>
+
         </form>
     </div>
 </div>
@@ -58,6 +26,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
 
 @section Scripts {
     @{

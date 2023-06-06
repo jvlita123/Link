@@ -8,25 +8,29 @@
 <div>
     <table width="300px">
         <tr>
-            <th>@Html.DisplayNameFor(model => model.ProfilePhoto)</th>
-            <td><img src="~/Photos/@Model.ProfilePhoto" height="70" width="70"/></td>
+            @*<th>@Html.DisplayNameFor(model => model.ProfilePhoto)</th>
+            <td><img src="~/Photos/@Model.ProfilePhoto" height="70" width="70"/></td>*@
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <td>@Html.DisplayFor(model => model.Name)</td>
         </tr>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Gender)</th>
             <td>@Html.DisplayFor(model => model.Gender)</td>
         </tr>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
-            <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
+            <th>@Html.DisplayNameFor(model => model.Localization)</th>
+            <td>@Html.DisplayFor(model => model.Localization)</td>
         </tr>
     </table>
     <table>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Photos)</th>
-            <td><img src="~/Photos/@Model.Photos.First()" height="140" width="140"/></td>
+            @*<th>@Html.DisplayNameFor(model => model.Photos)</th>
+            <td><img src="~/Photos/@Model.Photos.First()" height="140" width="140"/></td>*@
         </tr>
     </table>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="/profiles">Back to List</a>
 </div>
