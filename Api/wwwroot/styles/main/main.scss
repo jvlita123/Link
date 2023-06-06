@@ -186,6 +186,23 @@ body {
             font-weight: 500;
             text-transform: uppercase;
         }
+
+        .action-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .title {
+                padding: 8px 0;
+                color: rgba(113, 113, 113, 0.9);
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+
+            .action {
+
+            }
+        }
     }
 
     #root {
@@ -412,6 +429,11 @@ body {
         }
 
         .content {
+
+            #results-container {
+                margin-top: 30px;
+            }
+
             .form-wrapper {
                 margin-top: 40px;
                 display: flex;
@@ -490,6 +512,66 @@ body {
                             align-items: center;
                             gap: 5px;
                         }
+                    }
+                }
+            }
+
+            .warning-message {
+                background-color: #fff3cd;
+                color: #664d03;
+                padding: 18px 10px;
+                border: 2px solid #ffe69c;
+                border-radius: 8px;
+            }
+
+            .form-horizontal {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                
+                .input-wrapper {
+                    display: flex;
+                    gap: 20px;
+                }
+
+                .button {
+                    display: flex;
+                    height: 100%;
+                    margin-top: 30px;
+                }
+
+                .form-input {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    gap: 8px;
+
+                    label {
+                        margin-left: 5px;
+                    }
+
+                    input, select {
+                        min-width: 170px;
+                        border: 2px solid rgba(17, 17, 17, 0.2);
+                        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                        padding: 8px 12px;
+                        border-radius: 8px;
+                        transition: .2s ease-in-out;
+
+                        &:focus {
+                            border: 2px solid $navy-blue;
+                            outline: none;
+                        }
+
+                        &::placeholder {
+                            color: #11111163;
+                        }
+                    }
+
+                    select {
+                        appearance:none;
                     }
                 }
             }
