@@ -4,26 +4,46 @@
     ViewData["Title"] = "Get";
 }
 
-<h1>@Html.DisplayFor(model => model.Name)</h1>
-<div>
-    <table width="300px">
-        <tr>
-            @*<th>@Html.DisplayNameFor(model => model.ProfilePhoto)</th>
-            <td><img src="~/Photos/@Model.ProfilePhoto" height="70" width="70"/></td>*@
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <td>@Html.DisplayFor(model => model.Name)</td>
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Gender)</th>
-            <td>@Html.DisplayFor(model => model.Gender)</td>
-        </tr>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Localization)</th>
-            <td>@Html.DisplayFor(model => model.Localization)</td>
-        </tr>
-    </table>
+<div class="user-settings-content">
+    <div class="section-headline">
+        <span class="divider f-w"></span>
+        <div class="d-flex justify-between">
+            <h3 class="title">@Html.DisplayFor(model => model.Name) profile</h3>
+            <div class="d-flex align-items-center">
+                <a class="link">security</a>
+                <i class="bi bi-dot font-blue"></i>
+                <a class="link">more actions</a>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="content-section">
+        <div class="image-wrapper">
+            <img class="image image-rounded" src="~/Photos/@Model.ProfilePhoto"/>
+        </div>
+        <div class="detail-info-section">
+            <div class="info-col">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="data-col">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="info-col">
+                @Html.DisplayNameFor(model => model.Gender)
+            </div>
+            <div class="data-col">
+                @Html.DisplayFor(model => model.Gender)
+            </div>
+            <div class="info-col">
+                @Html.DisplayNameFor(model => model.Localization)
+            </div>
+            <div class="data-col">
+                @Html.DisplayFor(model => model.Localization)
+            </div>
+        </div>
+    </section>
+</div>
     <table>
         <tr>
             @*<th>@Html.DisplayNameFor(model => model.Photos)</th>
