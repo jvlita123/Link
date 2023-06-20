@@ -1,4 +1,4 @@
-﻿@model Data.Dto_s.User.GetUserDto
+﻿@model Data.Dto_s.User.GetUserMatchDto
 
 @{
     ViewData["Title"] = "Get";
@@ -41,6 +41,22 @@
             <div class="data-col">
                 @Html.DisplayFor(model => model.Localization)
             </div>
+            @ViewBag.Message
+            @if (ViewBag.Message =="Match")
+            {
+                <form asp-action="Update" asp-route-decision=true method="post">
+                    <div class="btn btn-primary">
+                        Match
+                        <button type="submit" name="swipeR" value="Match" onclick="UpdateTrue"></button>
+                    </div>
+                </form>
+                <form asp-action="Update" asp-route-decision=false method="post">
+                    <div class="btn btn-primary">
+                        Reject
+                        <button type="submit" name="swipeR" value="Reject" onclick="UpdateFalse"></button>
+                    </div>
+                </form>
+            }
         </div>
     </section>
 </div>
