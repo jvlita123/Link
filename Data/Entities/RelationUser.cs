@@ -24,11 +24,6 @@ namespace Data.Entities
         [ForeignKey("RelationId")]
         public virtual Relation Relation { get; set; }
 
-        [Required]
-        [Column("rus_preID")]
-        public int PreferenceId { get; set; }
-
-        [ForeignKey("PreferenceId")]
-        public virtual Preference Preference { get; set; }
+        
     }
 }

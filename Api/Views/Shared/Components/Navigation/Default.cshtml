@@ -1,0 +1,55 @@
+﻿@model Data.Dto_s.User.NavUserDto
+
+<div class="logo">
+    <a class="button dummy">Log in</a>
+    <a class="button dummy">Sign up</a>
+    <a href="/" class="logo-text">Link</a>
+</div>
+
+@if (Model != null)
+{
+    <div class="regular nav-links">
+        <ul>
+            <a href="/account/loggedin" class="nav-link">
+            <li class="nav-item">Home</li></a>
+            <a href="/relation/love" class="nav-link">
+            <li class="nav-item">Love</li></a>
+            <a href="/relation/loosewriting" class="nav-link">
+            <li class="nav-item">Just chat</li></a>
+            <a href="/relation/friendship" class="nav-link">
+            <li class="nav-item">Friendzone</li></a>
+        </ul>
+    </div>
+    <div class="regular nav-auth">
+        <button class="dropdown-toggle button">
+            <img id="dropdown-toggle" class="image image-rounded" src="~/Photos/@Model.ProfilePhoto" />
+        </button>
+        <div class="dropdown-content hidden" id="main-dropdown-content">
+            <div class="dropdown-header">
+                <h2>Signed in as <span>@Model.Name</span></h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="/userconversations">Messages</a>
+                </li>
+                <span class="divider"></span>
+                <li class="w-100 danger">
+                    <a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <div class="regular nav-auth">
+        <a asp-area="" asp-controller="Account" asp-action="Login" class="button link-primary">Log In</a>
+        <a asp-area="" asp-controller="Account" asp-action="Register" class="button primary">Sign Up</a>
+    </div>
+}
+
+<button class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>

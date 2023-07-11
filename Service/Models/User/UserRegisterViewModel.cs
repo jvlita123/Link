@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace Service.Services.ViewModels.User
 {
@@ -14,5 +15,9 @@ namespace Service.Services.ViewModels.User
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Please confirm your password.")]
         public string ConfirmPassword { get; set; }
+
+        public string Name { get; set; }
+
+        public string Gender { get; set; }
     }
 }

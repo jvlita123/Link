@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Models.Relation;
 using Service.Services;
@@ -24,16 +25,16 @@ namespace Api.Controllers
         {
             int userId = int.Parse(HttpContext.User.Claims.Where(c => c.Type.Contains("nameidentifier")).FirstOrDefault().Value);
             int relId = _relationService.GetByName("Love").Id;
-            GetRelationViewModel relationViewModel = _preferenceService.GetPreferences(userId, relId);
+            bool isRelation = _relationUserService.IsRelation(userId, relId); //sprawdzamy czy użytkownik zapisał się do relacji
 
-            if (relationViewModel.IsEdit)
+            GetRelationViewModel relationViewModel = _preferenceService.GetPreferences(userId, relId);
+            relationViewModel.RelId = relId;
+            relationViewModel.IsRelation = isRelation;
+            if (isRelation)
             {
-                ViewBag.Message = "Edit";
+                return Redirect("https://localhost:7014/User/GetProfiles/1"); //jeżeli user jest już zapisany do relacji od razu odesłanie do przeglądania profili
             }
-            else
-            {
-                ViewBag.Message = "Add";
-            }
+
 
             return View(relationViewModel);
         }
@@ -44,19 +45,11 @@ namespace Api.Controllers
             int loveId = _relationService.GetByName("Love").Id;
             int userId = int.Parse(HttpContext.User.Claims.Where(c => c.Type.Contains("nameidentifier")).FirstOrDefault().Value);
 
-            List<int> preferenceIds = _preferenceService.GetPreferenceIds(relationViewModel);
-
-            if (relationViewModel.IsEdit)
-            {
-                _relationUserService.Update(userId, loveId, preferenceIds);
-            }
-            else
-            {
-                _relationUserService.Create(userId, loveId, preferenceIds);
-            }
+                _relationUserService.Create(userId, loveId);
+            
 
             ViewBag.Message = "Success";
-            return View(relationViewModel);
+            return Redirect("https://localhost:7014/User/GetProfiles/2");
         }
 
         [HttpGet]
@@ -64,16 +57,16 @@ namespace Api.Controllers
         {
             int userId = int.Parse(HttpContext.User.Claims.Where(c => c.Type.Contains("nameidentifier")).FirstOrDefault().Value);
             int relId = _relationService.GetByName("Friendship").Id;
+            bool isRelation = _relationUserService.IsRelation(userId, relId);
             GetRelationViewModel relationViewModel = _preferenceService.GetPreferences(userId, relId);
+            relationViewModel.RelId = relId;
+            relationViewModel.IsRelation = isRelation;
+            if (isRelation)
+            {
+                return Redirect("https://localhost:7014/User/GetProfiles/2");
+            }
 
-            if (relationViewModel.IsEdit)
-            {
-                ViewBag.Message = "Edit";
-            }
-            else
-            {
-                ViewBag.Message = "Add";
-            }
+
 
             return View(relationViewModel);
         }
@@ -84,19 +77,11 @@ namespace Api.Controllers
             int relId = _relationService.GetByName("Friendship").Id;
             int userId = int.Parse(HttpContext.User.Claims.Where(c => c.Type.Contains("nameidentifier")).FirstOrDefault().Value);
 
-            List<int> preferenceIds = _preferenceService.GetPreferenceIds(relationViewModel);
+                _relationUserService.Create(userId, relId);
 
-            if (relationViewModel.IsEdit)
-            {
-                _relationUserService.Update(userId, relId, preferenceIds);
-            }
-            else
-            {
-                _relationUserService.Create(userId, relId, preferenceIds);
-            }
 
             ViewBag.Message = "Success";
-            return View(relationViewModel);
+            return Redirect("https://localhost:7014/User/GetProfiles/2");
         }
 
         [HttpGet]
@@ -104,16 +89,16 @@ namespace Api.Controllers
         {
             int userId = int.Parse(HttpContext.User.Claims.Where(c => c.Type.Contains("nameidentifier")).FirstOrDefault().Value);
             int relId = _relationService.GetByName("Loose writing").Id;
+            bool isRelation = _relationUserService.IsRelation(userId, relId);
             GetRelationViewModel relationViewModel = _preferenceService.GetPreferences(userId, relId);
+            relationViewModel.RelId = relId;
+            relationViewModel.IsRelation = isRelation;
+            if (isRelation)
+            {
+                return Redirect("https://localhost:7014/User/GetProfiles/3");
+            }
 
-            if (relationViewModel.IsEdit)
-            {
-                ViewBag.Message = "Edit";
-            }
-            else
-            {
-                ViewBag.Message = "Add";
-            }
+
 
             return View(relationViewModel);
         }
@@ -124,19 +109,12 @@ namespace Api.Controllers
             int relId = _relationService.GetByName("Loose writing").Id;
             int userId = int.Parse(HttpContext.User.Claims.Where(c => c.Type.Contains("nameidentifier")).FirstOrDefault().Value);
 
-            List<int> preferenceIds = _preferenceService.GetPreferenceIds(relationViewModel);
 
-            if (relationViewModel.IsEdit)
-            {
-                _relationUserService.Update(userId, relId, preferenceIds);
-            }
-            else
-            {
-                _relationUserService.Create(userId, relId, preferenceIds);
-            }
+                _relationUserService.Create(userId, relId);
+            
 
             ViewBag.Message = "Success";
-            return View(relationViewModel);
+            return Redirect("https://localhost:7014/User/GetProfiles/3");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Data.Entities
 
         [Required]
         [Column("usr_gender")]
-        public bool Gender { get; set; }
+        public string Gender { get; set; }
 
         [Column("usr_phoneNumber")]
         public string? PhoneNumber { get; set; }
@@ -54,7 +54,7 @@ namespace Data.Entities
 
         public virtual ICollection<Block> Blocks { get; set; }
 
-        //public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
 
         //public virtual ICollection<Match> Matches { get; set; }
 

@@ -47,7 +47,9 @@ namespace Api.Controllers
 
         public IActionResult Register()
         {
-            return View();
+            UserRegisterViewModel userRegisterViewModel = new UserRegisterViewModel();
+
+            return View(userRegisterViewModel);
         }
 
         [HttpPost]
@@ -61,9 +63,25 @@ namespace Api.Controllers
                     Password = userRegisterViewModel.Password,
                 };
 
-                _accountService.Add(newAcc);
+                Account? account = _accountService.Add(newAcc);
+                var newUser = new User()
+                {
+                    Name = userRegisterViewModel.Name,
+                    Gender = userRegisterViewModel.Gender,
+                    IsPremium = false,
+                    LastLogin = DateTime.UtcNow,
+                    AccountId = account.Id,
+                    Localization = "Poland",
+                    IsBlock = false
+                };
+
+                _userService.Add(newUser);
+
                 ModelState.Clear();
+
+                return Redirect("/");
             }
+
             return View();
         }
 
@@ -78,7 +96,6 @@ namespace Api.Controllers
             Account? user = _accountService.GetAll().FirstOrDefault(u => u.Email == acc.Email && u.Password == acc.Password);
             if (user != null)
             {
-
                 int userId = _userService.GetUserIdByAccountId(user.Id);
                 string userName = _userService.GetUserNameByAccountId(user.Id);
 
@@ -99,7 +116,6 @@ namespace Api.Controllers
 
                 return RedirectToAction("LoggedIn");
             }
-
             else
             {
                 ModelState.AddModelError("", "Email or Password is wrong.");

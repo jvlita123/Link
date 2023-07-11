@@ -7,33 +7,14 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="~/styles/main/main.css">
+    <link rel="stylesheet" href="~/styles/messages/messages.css">
     <script defer src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script defer src="~/lib/main.js"></script>
 </head>
 <body>
     <div id="root">
         <nav>
-            <div class="logo">
-                <a class="button dummy">Log in</a>
-                <a class="button dummy">Sign up</a>
-                <a href="/" class="logo-text">Link</a>
-            </div>
-            <div class="regular nav-links">
-                <ul>
-                    <a href="/" class="nav-link"><li class="nav-item">Home</li></a>
-                    <a href="/" class="nav-link"><li class="nav-item">Love</li></a>
-                    <a href="/" class="nav-link"><li class="nav-item">Just chat</li></a>
-                    <a href="/" class="nav-link"><li class="nav-item">Friendzone</li></a>
-                </ul>
-            </div>
-            <div class="regular nav-auth">
-                <a asp-area="" asp-controller="Account" asp-action="Login" class="button link-primary">Log In</a>
-                <a asp-area="" asp-controller="Account" asp-action="Register" class="button primary">Sign Up</a>
-            </div>
-            <button class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            @await Component.InvokeAsync("Navigation")
         </nav>
 
         <div class="content">
@@ -46,5 +27,6 @@
             </p>
         </div>
     </div>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

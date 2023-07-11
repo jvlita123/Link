@@ -2,7 +2,9 @@ using Api.Data;
 using Data.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using NuGet.ContentModel;
 using Service.Services;
+using System.Web.Mvc;
 
 namespace Api
 {
@@ -69,9 +71,12 @@ namespace Api
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<BlockService>();
             builder.Services.AddScoped<BlockRepository>();
+            builder.Services.AddScoped<PremiumService>();
 
             builder.Services.AddMemoryCache();
             builder.Services.AddSession();
+            builder.Services.AddHttpContextAccessor();
+
 
             var app = builder.Build();
 
@@ -96,6 +101,10 @@ namespace Api
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute(name: "user",
+                pattern: "{controller=User}/{action=Get}/{id?}");
+            //app.MapControllerRoute(name: "profiles",
+            //    pattern: "{controller=User}/{acrion=GetProfiles}/{id}");
 
             app.UseHttpsRedirection();
 

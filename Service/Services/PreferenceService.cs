@@ -1,4 +1,5 @@
-﻿using Data.Repositories;
+﻿using Data.Entities;
+using Data.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Service.Models.Relation;
 
@@ -15,21 +16,28 @@ namespace Service.Services
             _relationUserRepository = relationUserRepository;
         }
 
+        public List<Preference> GetAllByType(string type)
+        {
+            List<Preference> preferences = _preferenceRepository.GetAllByType(type).ToList();
+
+            return preferences;
+        }
+
         public GetRelationViewModel GetPreferences(int userId, int relId)
         {
-            List<SelectListItem>? gendersPreference = _preferenceRepository.GetAllByType("Gender")
+            List<SelectListItem>? gendersPreference = this.GetAllByType("Gender")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 
-            List<SelectListItem>? minHeightsPreference = _preferenceRepository.GetAllByType("MinHeight")
+            List<SelectListItem>? minHeightsPreference = this.GetAllByType("MinHeight")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 
-            List<SelectListItem>? maxHeightsPreference = _preferenceRepository.GetAllByType("MaxHeight")
+            List<SelectListItem>? maxHeightsPreference = this.GetAllByType("MaxHeight")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 
-            List<SelectListItem>? localizationsPreference = _preferenceRepository.GetAllByType("Localization")
+            List<SelectListItem>? localizationsPreference = this.GetAllByType("Localization")
                 .Select(p => new SelectListItem(p.Value, p.Id.ToString()))
                 .ToList();
 
@@ -46,30 +54,7 @@ namespace Service.Services
                 .Where(ur => ur.RelationId == relId)
                 .Any();
 
-            if (relationViewModel.IsEdit)
-            {
-                string genderPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "Gender")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-                string minHeightPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "MinHeight")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-                string maxHeightPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "MaxHeight")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-                string localizationPreferenceId = _relationUserRepository.GetAllByRelationType(userId, "Localization")
-                    .Select(ru => ru.PreferenceId)
-                    .FirstOrDefault()
-                    .ToString();
-
-                relationViewModel.GendersPreference.Find(gp => gp.Value == genderPreferenceId).Selected = true;
-                relationViewModel.MinHeightsPreference.Find(gp => gp.Value == minHeightPreferenceId).Selected = true;
-                relationViewModel.MaxHeightsPreference.Find(gp => gp.Value == maxHeightPreferenceId).Selected = true;
-                relationViewModel.LocalizationsPreference.Find(gp => gp.Value == localizationPreferenceId).Selected = true;
-            }
+            
 
             return relationViewModel;
         }
