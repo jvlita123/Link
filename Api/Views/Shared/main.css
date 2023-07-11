@@ -87,6 +87,7 @@ body {
   color: #404258;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 body #root {
   max-width: 1200px;

@@ -29,6 +29,11 @@ namespace Data.Repositories
 
             return result;
         }
+        public Match GetMatchForSpecifiedUser(int myuserId,int specifiedUserId, int relID)
+        {
+            var result = _dataContext.Matches.Where(m => (m.FirstUserId == myuserId && m.SecondUserId == specifiedUserId || m.FirstUserId == specifiedUserId && m.SecondUserId == myuserId) && m.RelationId == relID).FirstOrDefault();
+            return result;
+        }
         public Match GetNextMatchForLoggedUser2(int userId)
         {
             var result = _dataContext.Matches.Where(m => m.SecondUserId == userId && (m.StatusId == 3 || m.StatusId == 5)).FirstOrDefault(); // same as above just in different manner, cost is actually really similar if u optimize order of and statements, was too lazy to run calculations

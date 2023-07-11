@@ -64,6 +64,23 @@ namespace Service.Services
             if (match.FirstUserId == userID) return new MatchViewModel(null, _userRepository.GetById(match.SecondUserId));
             return new MatchViewModel(null, _userRepository.GetById(match.FirstUserId));
         }
+        public Match GetMatchForSpecifiedUser(int myUserId, int specifiedUserId, int relID)
+        {
+            Match matchForSpecifiedUser = _matchRepository.GetMatchForSpecifiedUser(myUserId, specifiedUserId, relID);
+            if (matchForSpecifiedUser == null)
+            {
+                matchForSpecifiedUser = new Match
+                {
+                    FirstUserId = myUserId,
+                    SecondUserId = specifiedUserId,
+                    RelationId = relID,
+                    StatusId = 5,
+                    Date = DateTime.Today
+                };
+                _matchRepository.AddAndSaveChanges(matchForSpecifiedUser);
+            }
+            return matchForSpecifiedUser;
+        }
         public Match Add(Match match)
         {
             Match? newAccount = _matchRepository.Add(match);

@@ -4,28 +4,23 @@
     ViewData["Title"] = "LooseWriting";
 }
 
-<h1>LooseWriting</h1>
+<h1 style="padding: 8px 0;
+    color: rgba(113, 113, 113, 0.9);
+    font-weight: 500;
+    text-transform: uppercase;">LooseWriting</h1>
 
-<hr />
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="LooseWriting">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <input type="submit" value="Add" class="btn btn-primary" />
-                
-            </div>
+            <div style="display: flex; justify-content: center;">You are currently not intrested in loose writing</div>
+            <div style="display: flex; justify-content: center; padding: 20px;"><input type="submit" value="Join" class="button primary" style="width: 110px; height: 51px; font-size: 25px;"/></div>
 
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 
 
 @section Scripts {
